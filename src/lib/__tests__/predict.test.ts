@@ -490,3 +490,40 @@ function shift(localDate: string, days: number): string {
   base.setUTCDate(base.getUTCDate() + days);
   return base.toISOString().slice(0, 10);
 }
+
+// ── Anchor time decay (mutation audit M8) ────────────────────────────────────
+// Eliminating `Math.exp(-ageDays / ANCHOR_DECAY_TAU)` survived the whole suite:
+// every race fixture was fresh, so the decay curve was load-bearing and
+// untested. These pin it: an anchor's blend weight falls as the race ages, and
+// a race past the max age stops anchoring at all.
+describe('race anchor decay', () => {
+  const asOf = '2026-05-31';
+  const raceOn = (localDate: string): PredictActivity => ({
+    startDate: `${localDate}T12:00:00Z`,
+    localDate,
+    distanceMeters: 10000,
+    movingTimeS: 38 * 60 + 15,
+    elapsedTimeS: 38 * 60 + 20,
+    workoutType: 1, // Strava race tag
+  });
+
+  it('a fresh race anchors with strictly more weight than an aged one', () => {
+    const fresh = predictRace([...realisticBlock(asOf), raceOn('2026-05-24')], asOf)!;
+    const aged = predictRace([...realisticBlock(asOf), raceOn('2026-03-08')], asOf)!;
+    expect(fresh.components.anchorMeta).toBeDefined();
+    expect(aged.components.anchorMeta).toBeDefined();
+    expect(fresh.components.anchorMeta!.weight).toBeGreaterThan(aged.components.anchorMeta!.weight);
+  });
+
+  it('decay is monotone across three ages', () => {
+    const w = (d: string) =>
+      predictRace([...realisticBlock(asOf), raceOn(d)], asOf)!.components.anchorMeta!.weight;
+    expect(w('2026-05-24')).toBeGreaterThan(w('2026-04-19'));
+    expect(w('2026-04-19')).toBeGreaterThan(w('2026-03-08'));
+  });
+
+  it('a race older than the anchor window stops anchoring entirely', () => {
+    const stale = predictRace([...realisticBlock(asOf), raceOn('2025-09-01')], asOf)!;
+    expect(stale.components.anchorMeta).toBeUndefined();
+  });
+});
