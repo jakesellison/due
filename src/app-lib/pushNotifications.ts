@@ -158,7 +158,9 @@ const APP_SCHEME = 'duerunning://';
  * "open any URL the OS resolves" — an https:// phishing page or another app's
  * scheme, dressed up as a Due notification. Only our own scheme is honoured.
  */
-function routeFromResponse(response: NotificationResponse | null): void {
+/** Exported as a named test seam: the scheme allowlist below is a security
+ *  control (see the doc above) that shipped without a test. */
+export function routeFromResponse(response: NotificationResponse | null): void {
   const data = response?.notification?.request?.content?.data as { url?: string } | undefined;
   const url = data?.url;
   if (typeof url !== 'string' || !url.startsWith(APP_SCHEME)) return;

@@ -73,3 +73,18 @@ files.
   wipe fires on an affirmative revocation and on nothing else (M6).
 - `authClaimHandler.test.ts`: 404/200/400 response contract pinned (M11).
 - Node suite now 1,309 tests (was 1,300).
+
+
+## Gap-closure status (same day)
+
+| gap | status |
+|---|---|
+| 1 · planner screen | **CLOSED** — 6-test suite incl. the doubles-desk regression, mutation-verified at the screen level |
+| 2 · api handlers | **CLOSED (destructive/auth set)** — account/delete, strava/disconnect, sync/status, auth-claim, webhook gating. Remaining thin: refresh, sync-latest, backfill happy-paths |
+| 3 · M8 anchor decay | **CLOSED** — 3 tests (fresh > aged, monotone, stale drops out); mutant re-run killed |
+| 4 · query layer | **CLOSED (core)** — planView row→view mapping (6) + planHeaderInfo fact deriver (6). Remaining thin: workoutDetail, activityDetail, planIdentity, recentMileage |
+| 5 · plumbing | **PARTIAL** — the security-relevant piece (notification scheme allowlist, 8 tests incl. case-tricked/other-scheme/non-string payloads) is pinned. seed.ts + backfill.ts remain untested by choice: integration-shaped orchestration whose valuable test is against a real database, not a mock pyramid |
+| 6 · screens | **CLOSED** — routes/[id] + plan/history render smokes (loaded, empty, populated states) |
+
+Suite after closure: node 1,322 · app 694 (was 1,300 / 664). New named test
+seams (checks/orphans.mjs TEST_SEAMS): `processEvent`, `routeFromResponse`.
