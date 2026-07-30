@@ -53,6 +53,11 @@ ruling: drop-to-ledger. Revisit any of these by extracting the module from
 - Strava description write-back (push Due results onto the activity) — noted
   2026-07-17, still unbuilt.
 
+- **SessionView split (the one planned rewrite) — deferred.** 4,965 lines,
+  ~40 internal components sharing one makeStyles. Tests are the net
+  (workoutSession + screen suites, all green); the split is a supervised
+  refactor, not an overnight mechanical one.
+
 ## 3 · Rule gaps (prose without a check, carried knowingly)
 
 Populated during the Phase 0 DESIGN.md triage — see the PROSE-tagged rules

@@ -12,7 +12,9 @@
   "include": [
     "app",
     "src",
-    "checks"
+    "checks",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
   ],
   "exclude": [
     "node_modules"
