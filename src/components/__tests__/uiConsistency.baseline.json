@@ -1,1 +1,196 @@
-{}
+{
+  "app/(tabs)/_layout.tsx": {
+    "pillRadius": 1
+  },
+  "app/(tabs)/index.tsx": {
+    "pillRadius": 1
+  },
+  "app/(tabs)/you.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "app/connections/strava.tsx": {
+    "hairline": 1,
+    "pillRadius": 2,
+    "cardFill": 1
+  },
+  "app/notifications.tsx": {
+    "hairline": 2,
+    "cardFill": 1
+  },
+  "app/plan/history.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "app/planner/[id].tsx": {
+    "hairline": 3
+  },
+  "app/plans/index.tsx": {
+    "tabularNums": 1,
+    "hairline": 3,
+    "pillRadius": 1,
+    "cardFill": 3
+  },
+  "app/plans/install.tsx": {
+    "tabularNums": 1,
+    "hairline": 4,
+    "cardFill": 3
+  },
+  "app/plans/starter/[id].tsx": {
+    "hairline": 2,
+    "pillRadius": 1,
+    "cardFill": 1
+  },
+  "app/routes/[id].tsx": {
+    "tabularNums": 1,
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "app/routes/new.tsx": {
+    "tabularNums": 1,
+    "hairline": 4,
+    "pillRadius": 3,
+    "cardFill": 3
+  },
+  "app/routes/select.tsx": {
+    "pillRadius": 1
+  },
+  "app/week-calendar.tsx": {
+    "tabularNums": 1,
+    "pillRadius": 2
+  },
+  "app/week/[id].tsx": {
+    "tabularNums": 2,
+    "pillRadius": 1
+  },
+  "src/components/Card.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/GlassTabBar.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/ModalFooter.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/RoundIconButton.tsx": {
+    "cardFill": 1
+  },
+  "src/components/Screen.tsx": {
+    "hairline": 1
+  },
+  "src/components/SheetGrabberHeader.tsx": {
+    "pillRadius": 1
+  },
+  "src/components/ShoeEditor.tsx": {
+    "hairline": 4,
+    "cardFill": 1
+  },
+  "src/components/StravaAttribution.tsx": {
+    "hairline": 1
+  },
+  "src/components/UserAvatar.tsx": {
+    "tabularNums": 1,
+    "hairline": 1
+  },
+  "src/components/WeekContractStamp.tsx": {
+    "pillRadius": 2,
+    "cardFill": 1
+  },
+  "src/components/brand/DuePanel.tsx": {
+    "hairline": 1
+  },
+  "src/components/dash/BlockRail.tsx": {
+    "tabularNums": 1,
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/dash/CalendarCell.tsx": {
+    "hairline": 1
+  },
+  "src/components/dash/ContractMetMoment.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/dash/ContractMileageTrack.tsx": {
+    "pillRadius": 1
+  },
+  "src/components/dash/DayPanel.tsx": {
+    "tabularNums": 1,
+    "hairline": 2,
+    "cardFill": 1
+  },
+  "src/components/dash/DayTab.tsx": {
+    "tabularNums": 1
+  },
+  "src/components/dash/ReconnectStravaRow.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/dash/SyncStatusRow.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/dash/WeekGauges.tsx": {
+    "tabularNums": 2
+  },
+  "src/components/dash/WorkoutRow.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/loading/TabSkeletons.tsx": {
+    "pillRadius": 1,
+    "cardFill": 5
+  },
+  "src/components/plan/AnchorSheet.tsx": {
+    "hairline": 2,
+    "cardFill": 1
+  },
+  "src/components/plan/PlanBlueprint.tsx": {
+    "tabularNums": 2,
+    "hairline": 3,
+    "pillRadius": 1,
+    "cardFill": 1
+  },
+  "src/components/plan/PlanIdentityCard.tsx": {
+    "uppercase": 1,
+    "tabularNums": 1,
+    "hairline": 2,
+    "pillRadius": 1,
+    "cardFill": 2
+  },
+  "src/components/plan/PlanLedger.tsx": {
+    "uppercase": 3,
+    "tabularNums": 2,
+    "hairline": 1,
+    "pillRadius": 3,
+    "cardFill": 1
+  },
+  "src/components/plan/PlanOutlineView.tsx": {
+    "pillRadius": 1
+  },
+  "src/components/plan/WeekManifest.tsx": {
+    "tabularNums": 1
+  },
+  "src/components/planner/ReshapeSummary.tsx": {
+    "tabularNums": 1,
+    "pillRadius": 1
+  },
+  "src/components/planner/WorkoutBuilder.tsx": {
+    "tabularNums": 1,
+    "cardFill": 4
+  },
+  "src/components/run/RouteCard.tsx": {
+    "hairline": 1,
+    "cardFill": 1
+  },
+  "src/components/session/SessionView.tsx": {
+    "tabularNums": 8,
+    "hairline": 10,
+    "eyebrowOverride": 2,
+    "pillRadius": 2,
+    "cardFill": 6
+  }
+}

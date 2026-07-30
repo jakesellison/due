@@ -18,7 +18,8 @@ ruling: drop-to-ledger. Revisit any of these by extracting the module from
 - `lib/kpi/insights/heat.ts` — HR vs temperature, heat-adjusted effort. Same story.
 - `lib/kpi/insights/volume.ts` — weekly mileage buckets / daily mileage charts. Same story.
 - `lib/plan/changeLog.ts` — per-day/per-week plan-edit history readers (the `plan_changes` stretch). Table exists; UI never built.
-- `lib/plan/cover.ts` (partial) — cover-art mode/fingerprint variants beyond the shipped one.
+- `lib/plan/cover.ts` (partial) — cover-art mode/fingerprint/seed/palette variants beyond the shipped renderer.
+- `components/plan/PlanCoverField.tsx` + `app/lab/*` — the lab prototype screens (plan covers, day-detail directions, gauge/arrival experiments) and the component only they consumed. Prototypes, not product.
 - `lib/plan/weekEdit.ts` (partial) — `resolveDrop` drag decision tree (planner uses its own inline logic), `editSummary`.
 - `lib/workout/render.ts` (partial) — step-label/target-detail formatting variants.
 - `lib/run/paceCurve.ts` (partial) — by-distance + best-window pace-curve siblings; only the duration curve shipped.
@@ -56,6 +57,14 @@ ruling: drop-to-ledger. Revisit any of these by extracting the module from
 
 Populated during the Phase 0 DESIGN.md triage — see the PROSE-tagged rules
 there. Each entry names the rule and why it stays judgment-only.
+
+- **Ratchet baseline is NOT zero (owner decision needed).** The old repo's
+  grandfathered hand-rolls came along with the screens/components they live in
+  (~96 counts across ~40 files, carried verbatim in
+  `uiConsistency.baseline.json`). The ratchet still blocks anything NEW and
+  counts can only go down. The spec aimed for zero; draining it is mechanical
+  (each entry has a prescribed fix) but touches ~40 rendering files, so it is
+  a supervised workstream, not an overnight one.
 
 ## 4 · Renames (clean shape taken; old shape recorded)
 

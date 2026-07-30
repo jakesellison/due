@@ -96,7 +96,8 @@ test('the ratchet is actually watching the app, not an empty file list', () => {
   // than at it. The named-file assertions below are what actually catch a
   // pathspec that silently stops matching a whole directory.
   const files = scannedFiles();
-  expect(files.length).toBeGreaterThan(80);
+  // 60, not 80: the extraction dropped the lab prototypes + retired surfaces.
+  expect(files.length).toBeGreaterThan(60);
   expect(files).toContain('app/dash.tsx');
   expect(files).toContain('app/(tabs)/index.tsx');
   expect(files).toContain('src/components/Card.tsx');
