@@ -20,7 +20,7 @@ const BARRELS = new Set(['src/lib/index.ts']);
 
 // Named test seams that don't follow the __/ForTests convention: exported so
 // the node suite can drive internals directly. A prod consumer would be a bug.
-const TEST_SEAMS = new Set(['src/server/ingest.ts#countHardLaps']);
+const TEST_SEAMS = new Set(['src/server/ingest.ts#countHardLaps', 'api/strava/webhook.ts#processEvent']);
 
 const baseline = new Set(JSON.parse(readFileSync('checks/orphans.baseline.json', 'utf8')));
 

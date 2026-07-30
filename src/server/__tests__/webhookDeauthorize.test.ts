@@ -157,3 +157,60 @@ describe('parseStravaEvent id validation', () => {
     expect(parseStravaEvent({ object_type: 'activity', aspect_type: 'create', owner_id: 1, object_id: 1.5 })).toBeNull();
   });
 });
+
+// ── The GATING, not just the verdict ─────────────────────────────────────────
+// Mutation audit 2026-07-30: deleting `if (verdict !== 'revoked') return` from
+// processEvent survived the entire suite — the verdict function was tested, the
+// guard consuming it was not. These pin the guard itself: the wipe fires on an
+// affirmative revocation and on NOTHING else.
+
+jest.mock('../supabaseAdmin', () => ({ createAdminClient: () => ({}) }));
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { processEvent } = require('../../../api/strava/webhook') as {
+  processEvent: (event: unknown) => Promise<void>;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ingestMock = require('../ingest') as {
+  getConnectionByAthlete: jest.Mock;
+  deleteAllStravaActivities: jest.Mock;
+  deactivateConnection: jest.Mock;
+};
+
+const DEAUTH_EVENT = {
+  object_type: 'athlete', aspect_type: 'update', object_id: 7, owner_id: 7,
+  updates: { authorized: 'false' },
+};
+
+describe('processEvent — deauthorization wipe gating', () => {
+  beforeEach(() => {
+    ingestMock.getConnectionByAthlete.mockResolvedValue({ ...CONN });
+  });
+
+  it('wipes history ONLY on an affirmative revocation (invalid_grant probe)', async () => {
+    refreshAccessToken.mockRejectedValue(new StravaHttpError('token-refresh', 400, 'invalid_grant'));
+    await processEvent(DEAUTH_EVENT);
+    expect(ingestMock.deleteAllStravaActivities).toHaveBeenCalledWith({}, 'u1');
+    expect(ingestMock.deactivateConnection).toHaveBeenCalledWith({}, 'u1');
+  });
+
+  it('a STILL-ACTIVE grant (probe succeeds) must not wipe anything', async () => {
+    refreshAccessToken.mockResolvedValue(RENEWED);
+    await processEvent(DEAUTH_EVENT);
+    expect(ingestMock.deleteAllStravaActivities).not.toHaveBeenCalled();
+    expect(ingestMock.deactivateConnection).not.toHaveBeenCalled();
+  });
+
+  it('an UNKNOWN verdict (Strava 5xx) must not wipe anything', async () => {
+    refreshAccessToken.mockRejectedValue(new StravaHttpError('token-refresh', 503, 'unavailable'));
+    await processEvent(DEAUTH_EVENT);
+    expect(ingestMock.deleteAllStravaActivities).not.toHaveBeenCalled();
+    expect(ingestMock.deactivateConnection).not.toHaveBeenCalled();
+  });
+
+  it('authorized:"true" (not a revocation) never probes or wipes', async () => {
+    await processEvent({ ...DEAUTH_EVENT, updates: { authorized: 'true' } });
+    expect(refreshAccessToken).not.toHaveBeenCalled();
+    expect(ingestMock.deleteAllStravaActivities).not.toHaveBeenCalled();
+  });
+});
