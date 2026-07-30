@@ -32,6 +32,7 @@ for (const file of files) {
   const src = readFileSync(file, 'utf8');
   for (const m of src.matchAll(SPEC)) {
     const spec = m[1];
+    if (spec.endsWith('.json')) continue; // static data, not a code layer
     // Relative imports cannot cross layers upward without an alias, except by
     // climbing out of src/ entirely — flag any '../..' escape from the layer.
     const climbsOut = spec.startsWith('..') && spec.split('../').length - 1 >= file.slice(rule.layer.length).split('/').length;

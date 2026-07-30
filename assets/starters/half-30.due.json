@@ -1,0 +1,1510 @@
+{
+  "formatVersion": 3,
+  "source": "starter",
+  "plan": {
+    "name": "Half · 30 mpw",
+    "distanceKind": "half",
+    "numWeeks": 12,
+    "minWeeks": 8
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "phase": "base",
+      "targetMeters": 38624,
+      "qualityTargetMeters": 3500,
+      "longTargetMeters": 12875,
+      "isRecovery": false
+    },
+    {
+      "week": 2,
+      "phase": "base",
+      "targetMeters": 41843,
+      "qualityTargetMeters": 5400,
+      "longTargetMeters": 14484,
+      "isRecovery": false
+    },
+    {
+      "week": 3,
+      "phase": "build",
+      "targetMeters": 45062,
+      "qualityTargetMeters": 10027,
+      "longTargetMeters": 14484,
+      "isRecovery": false
+    },
+    {
+      "week": 4,
+      "phase": "recovery",
+      "targetMeters": 37015,
+      "qualityTargetMeters": 3700,
+      "longTargetMeters": 9656,
+      "isRecovery": true
+    },
+    {
+      "week": 5,
+      "phase": "build",
+      "targetMeters": 48280,
+      "qualityTargetMeters": 11200,
+      "longTargetMeters": 16093,
+      "isRecovery": false
+    },
+    {
+      "week": 6,
+      "phase": "build",
+      "targetMeters": 51499,
+      "qualityTargetMeters": 12336,
+      "longTargetMeters": 16093,
+      "isRecovery": false
+    },
+    {
+      "week": 7,
+      "phase": "recovery",
+      "targetMeters": 41843,
+      "qualityTargetMeters": 4200,
+      "longTargetMeters": 9656,
+      "isRecovery": true
+    },
+    {
+      "week": 8,
+      "phase": "build",
+      "targetMeters": 53108,
+      "qualityTargetMeters": 12200,
+      "longTargetMeters": 17703,
+      "isRecovery": false
+    },
+    {
+      "week": 9,
+      "phase": "build",
+      "targetMeters": 56327,
+      "qualityTargetMeters": 13000,
+      "longTargetMeters": 17703,
+      "isRecovery": false
+    },
+    {
+      "week": 10,
+      "phase": "peak",
+      "targetMeters": 57936,
+      "qualityTargetMeters": 13436,
+      "longTargetMeters": 19312,
+      "isRecovery": false
+    },
+    {
+      "week": 11,
+      "phase": "taper",
+      "targetMeters": 45062,
+      "qualityTargetMeters": 6300,
+      "longTargetMeters": 16093,
+      "isRecovery": false
+    },
+    {
+      "week": 12,
+      "phase": "taper",
+      "targetMeters": 28968,
+      "qualityTargetMeters": 21097,
+      "longTargetMeters": 0,
+      "isRecovery": false
+    }
+  ],
+  "workouts": [
+    {
+      "week": 1,
+      "day": 1,
+      "type": "quality",
+      "title": "Threshold 2.2 mi",
+      "plannedDistanceMeters": 9133,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 3500,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 280,
+                "slow_s_per_km": 292
+              },
+              "intent": "threshold"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Sustained threshold — comfortably hard with breathing controlled; this is your engine-building session."
+    },
+    {
+      "week": 1,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5539,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 1,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5539,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 1,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 12875,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Run by effort on rolling terrain and finish feeling like you could keep going."
+    },
+    {
+      "week": 1,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5538,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 2,
+      "day": 1,
+      "type": "quality",
+      "title": "Tempo 3.4 mi",
+      "plannedDistanceMeters": 11033,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 5400,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Hold an even tempo you could sustain for an hour; smooth and relaxed beats forcing the pace."
+    },
+    {
+      "week": 2,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5442,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 2,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5442,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 2,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 14484,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Steady from the start; fuel early and let the miles accumulate without surging."
+    },
+    {
+      "week": 2,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5442,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 3,
+      "day": 1,
+      "type": "quality",
+      "title": "3 × 1 mile cruise",
+      "plannedDistanceMeters": 11660,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "repeat",
+          "sets": 3,
+          "children": [
+            {
+              "kind": "interval",
+              "target": {
+                "distance_m": 1609,
+                "hr_zone": "threshold",
+                "pace": {
+                  "kind": "absolute",
+                  "band": {
+                    "fast_s_per_km": 280,
+                    "slow_s_per_km": 292
+                  },
+                  "intent": "threshold"
+                }
+              }
+            },
+            {
+              "kind": "recovery",
+              "target": {
+                "distance_m": 400,
+                "hr_zone": "easy"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Cruise intervals at threshold with a short jog; more total work than a tempo at the same effort."
+    },
+    {
+      "week": 3,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 4043,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 3,
+      "day": 3,
+      "type": "quality",
+      "title": "Progression 3.2 mi",
+      "plannedDistanceMeters": 10833,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 5200,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Start steady and roll the pace down each mile, finishing the block at threshold effort."
+    },
+    {
+      "week": 3,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 14484,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Relaxed aerobic long run — hold form in the final third as legs fatigue."
+    },
+    {
+      "week": 3,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 4042,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 4,
+      "day": 1,
+      "type": "quality",
+      "title": "Cruise 2.3 mi",
+      "plannedDistanceMeters": 9333,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 3700,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 280,
+                "slow_s_per_km": 292
+              },
+              "intent": "threshold"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Down-week cruise: relaxed threshold rhythm, well within yourself — stimulus without digging a hole."
+    },
+    {
+      "week": 4,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 6009,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 4,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 6009,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 4,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 9656,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Keep this fully aerobic and conversational; time on feet is the goal, not pace."
+    },
+    {
+      "week": 4,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 6008,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 5,
+      "day": 1,
+      "type": "quality",
+      "title": "3.5 mi @ half effort",
+      "plannedDistanceMeters": 11233,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 5600,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 296,
+                "slow_s_per_km": 308
+              },
+              "intent": "HMP"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Race-specific block at goal half-marathon effort; rehearse fueling and settle into goal rhythm."
+    },
+    {
+      "week": 5,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 4861,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 5,
+      "day": 3,
+      "type": "quality",
+      "title": "Threshold 3.5 mi",
+      "plannedDistanceMeters": 11233,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 5600,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 280,
+                "slow_s_per_km": 292
+              },
+              "intent": "threshold"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Sustained threshold — comfortably hard with breathing controlled; this is your engine-building session."
+    },
+    {
+      "week": 5,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 16093,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Run by effort on rolling terrain and finish feeling like you could keep going."
+    },
+    {
+      "week": 5,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 4860,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 6,
+      "day": 1,
+      "type": "quality",
+      "title": "Tempo 3.7 mi",
+      "plannedDistanceMeters": 11533,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 5900,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Hold an even tempo you could sustain for an hour; smooth and relaxed beats forcing the pace."
+    },
+    {
+      "week": 6,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5102,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 6,
+      "day": 3,
+      "type": "quality",
+      "title": "4 × 1 mile cruise",
+      "plannedDistanceMeters": 13669,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "repeat",
+          "sets": 4,
+          "children": [
+            {
+              "kind": "interval",
+              "target": {
+                "distance_m": 1609,
+                "hr_zone": "threshold",
+                "pace": {
+                  "kind": "absolute",
+                  "band": {
+                    "fast_s_per_km": 280,
+                    "slow_s_per_km": 292
+                  },
+                  "intent": "threshold"
+                }
+              }
+            },
+            {
+              "kind": "recovery",
+              "target": {
+                "distance_m": 400,
+                "hr_zone": "easy"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Cruise intervals at threshold with a short jog; more total work than a tempo at the same effort."
+    },
+    {
+      "week": 6,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 16093,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Steady from the start; fuel early and let the miles accumulate without surging."
+    },
+    {
+      "week": 6,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5102,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 7,
+      "day": 1,
+      "type": "quality",
+      "title": "Cruise 2.6 mi",
+      "plannedDistanceMeters": 9833,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 4200,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 280,
+                "slow_s_per_km": 292
+              },
+              "intent": "threshold"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Down-week cruise: relaxed threshold rhythm, well within yourself — stimulus without digging a hole."
+    },
+    {
+      "week": 7,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 7451,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 7,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 7451,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 7,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 9656,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Relaxed aerobic long run — hold form in the final third as legs fatigue."
+    },
+    {
+      "week": 7,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 7452,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 8,
+      "day": 1,
+      "type": "quality",
+      "title": "Progression 3.8 mi",
+      "plannedDistanceMeters": 11733,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 6100,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Start steady and roll the pace down each mile, finishing the block at threshold effort."
+    },
+    {
+      "week": 8,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5970,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 8,
+      "day": 3,
+      "type": "quality",
+      "title": "3.8 mi @ half effort",
+      "plannedDistanceMeters": 11733,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 6100,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 296,
+                "slow_s_per_km": 308
+              },
+              "intent": "HMP"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Race-specific block at goal half-marathon effort; rehearse fueling and settle into goal rhythm."
+    },
+    {
+      "week": 8,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 17703,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Keep this fully aerobic and conversational; time on feet is the goal, not pace."
+    },
+    {
+      "week": 8,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5969,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 9,
+      "day": 1,
+      "type": "quality",
+      "title": "Threshold 4 mi",
+      "plannedDistanceMeters": 12133,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 6500,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 280,
+                "slow_s_per_km": 292
+              },
+              "intent": "threshold"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Sustained threshold — comfortably hard with breathing controlled; this is your engine-building session."
+    },
+    {
+      "week": 9,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 7179,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 9,
+      "day": 3,
+      "type": "quality",
+      "title": "Tempo 4 mi",
+      "plannedDistanceMeters": 12133,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 6500,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Hold an even tempo you could sustain for an hour; smooth and relaxed beats forcing the pace."
+    },
+    {
+      "week": 9,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 17703,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Run by effort on rolling terrain and finish feeling like you could keep going."
+    },
+    {
+      "week": 9,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 7179,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 10,
+      "day": 1,
+      "type": "quality",
+      "title": "4 × 1 mile cruise",
+      "plannedDistanceMeters": 13669,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "repeat",
+          "sets": 4,
+          "children": [
+            {
+              "kind": "interval",
+              "target": {
+                "distance_m": 1609,
+                "hr_zone": "threshold",
+                "pace": {
+                  "kind": "absolute",
+                  "band": {
+                    "fast_s_per_km": 280,
+                    "slow_s_per_km": 292
+                  },
+                  "intent": "threshold"
+                }
+              }
+            },
+            {
+              "kind": "recovery",
+              "target": {
+                "distance_m": 400,
+                "hr_zone": "easy"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Cruise intervals at threshold with a short jog; more total work than a tempo at the same effort."
+    },
+    {
+      "week": 10,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 6161,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 10,
+      "day": 3,
+      "type": "quality",
+      "title": "Progression 4.3 mi",
+      "plannedDistanceMeters": 12633,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 7000,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 286,
+                "slow_s_per_km": 298
+              },
+              "intent": "tempo"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Start steady and roll the pace down each mile, finishing the block at threshold effort."
+    },
+    {
+      "week": 10,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 19312,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Steady from the start; fuel early and let the miles accumulate without surging."
+    },
+    {
+      "week": 10,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 6161,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 11,
+      "day": 1,
+      "type": "quality",
+      "title": "3.9 mi @ half effort",
+      "plannedDistanceMeters": 11933,
+      "structure": [
+        {
+          "kind": "warmup",
+          "target": {
+            "distance_m": 3219,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 6300,
+            "hr_zone": "threshold",
+            "pace": {
+              "kind": "absolute",
+              "band": {
+                "fast_s_per_km": 296,
+                "slow_s_per_km": 308
+              },
+              "intent": "HMP"
+            }
+          }
+        },
+        {
+          "kind": "cooldown",
+          "target": {
+            "distance_m": 2414,
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Race-specific block at goal half-marathon effort; rehearse fueling and settle into goal rhythm."
+    },
+    {
+      "week": 11,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5679,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 11,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5679,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 11,
+      "day": 5,
+      "type": "long",
+      "title": "Long run",
+      "plannedDistanceMeters": 16093,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Relaxed aerobic long run — hold form in the final third as legs fatigue."
+    },
+    {
+      "week": 11,
+      "day": 6,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 5678,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 12,
+      "day": 1,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 1551,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 12,
+      "day": 2,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 1551,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 12,
+      "day": 3,
+      "type": "easy",
+      "title": "Easy run",
+      "plannedDistanceMeters": 1550,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 12,
+      "day": 4,
+      "type": "easy",
+      "title": "Strides",
+      "plannedDistanceMeters": 3219,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "distance_m": 2319,
+            "hr_zone": "easy"
+          }
+        },
+        {
+          "kind": "strides",
+          "target": {
+            "distance_m": 900,
+            "hr_zone": "rep",
+            "effort": "9 × 100 m controlled strides"
+          }
+        }
+      ],
+      "notes": null
+    },
+    {
+      "week": 12,
+      "day": 5,
+      "type": "race",
+      "title": "Half marathon",
+      "plannedDistanceMeters": 21097,
+      "structure": [
+        {
+          "kind": "steady",
+          "target": {
+            "hr_zone": "easy"
+          }
+        }
+      ],
+      "notes": "Warm up, trust the training, and settle into goal effort early; race the second half."
+    }
+  ],
+  "questions": []
+}
