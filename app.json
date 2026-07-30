@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Due",
+    "slug": "due",
+    "scheme": "duerunning",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "run.due.app",
+      "supportsTablet": false
+    }
+  }
+}

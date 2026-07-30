@@ -1,0 +1,4 @@
+{
+  "_doc": "One deriver per domain fact. surfaces = files allowed to RENDER it; bannedPatterns = regexes that indicate a screen re-deriving the fact from raw fields (checked against app/ and src/components/). Grows in Phase 2/4.",
+  "facts": {}
+}
