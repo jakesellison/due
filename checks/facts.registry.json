@@ -1,4 +1,39 @@
 {
   "_doc": "One deriver per domain fact. surfaces = files allowed to RENDER it; bannedPatterns = regexes that indicate a screen re-deriving the fact from raw fields (checked against app/ and src/components/). Grows in Phase 2/4.",
-  "facts": {}
+  "facts": {
+    "day_planned_distance": {
+      "deriver": "src/lib/planner/dayComposition.ts#dayComposition",
+      "surfaces": [
+        "Dash day strip",
+        "planner day cells + desk"
+      ],
+      "note": "banked + still-scheduled, resolved per WORKOUT \u2014 the Dash-16mi/planner-13mi bug class",
+      "bannedPatterns": []
+    },
+    "week_mileage_gap": {
+      "deriver": "src/lib/adapt/propose.ts#deriveContext",
+      "surfaces": [
+        "Dash contract status row (deficit + over-allocation)"
+      ],
+      "note": "the SIGNED gap: >0 behind (orange), <0 over-allocated (green); one definition, both directions",
+      "bannedPatterns": []
+    },
+    "quality_week_credit": {
+      "deriver": "src/app-lib/qualityCredit.ts#detectWeekQuality",
+      "surfaces": [
+        "Dash gauges",
+        "week detail",
+        "planner"
+      ],
+      "note": "HR-detected hard miles banked against the quality contract; never re-summed from raw activities",
+      "bannedPatterns": []
+    },
+    "days_to_race": {
+      "deriver": "src/app-lib/queries/planHeader.ts#planHeaderInfo",
+      "surfaces": [
+        "Dash header countdown"
+      ],
+      "bannedPatterns": []
+    }
+  }
 }

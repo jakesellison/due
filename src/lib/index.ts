@@ -18,6 +18,7 @@ export * from './kpi/prescribedQuality';
 export * from './kpi/prescribedSets';
 export * from './kpi/movingTime';
 export * from './kpi/schedule';
+export * from './kpi/insights';
 export * from './kpi/weekStrip';
 export {
   buildWeekDays,

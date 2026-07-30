@@ -2,14 +2,99 @@
   "expo": {
     "name": "Due",
     "slug": "due",
-    "scheme": "duerunning",
     "version": "0.1.0",
     "orientation": "portrait",
+    "icon": "./assets/brand/due-app-icon.png",
+    "scheme": "duerunning",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "supportsTablet": false,
       "bundleIdentifier": "run.due.app",
-      "supportsTablet": false
+      "infoPlist": {
+        "UIFileSharingEnabled": true,
+        "LSSupportsOpeningDocumentsInPlace": true,
+        "CFBundleDocumentTypes": [
+          {
+            "CFBundleTypeName": "Due plan",
+            "LSHandlerRank": "Owner",
+            "LSItemContentTypes": ["run.due.app.plan"]
+          }
+        ],
+        "UTExportedTypeDeclarations": [
+          {
+            "UTTypeIdentifier": "run.due.app.plan",
+            "UTTypeDescription": "Due plan",
+            "UTTypeConformsTo": ["public.json", "public.text"],
+            "UTTypeTagSpecification": {
+              "public.filename-extension": ["due"]
+            }
+          }
+        ]
+      }
+    },
+    "android": {
+      "package": "run.due.app"
+    },
+    "web": {
+      "output": "static",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0F0F12",
+          "image": "./assets/brand/due-splash-mark.png",
+          "imageWidth": 150,
+          "resizeMode": "contain"
+        }
+      ],
+      "expo-maps",
+      "expo-web-browser",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Due uses your location to center the route builder map on where you are."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Due uses your photo library so you can add pictures to shoes and runs.",
+          "cameraPermission": "Due uses the camera so you can snap pictures for shoes and runs."
+        }
+      ],
+      "./plugins/withDueShareIdentifiers",
+      [
+        "expo-share-intent",
+        {
+          "iosShareExtensionBundleIdentifier": "run.due.app.share-extension",
+          "iosActivationRules": {
+            "NSExtensionActivationSupportsText": true,
+            "NSExtensionActivationSupportsFileWithMaxCount": 1
+          },
+          "iosAppGroupIdentifier": "group.run.due.app.shareintent",
+          "androidIntentFilters": ["text/*", "application/json"]
+        }
+      ]
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/fef4fc44-9305-4878-bc29-ea323815c055"
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fef4fc44-9305-4878-bc29-ea323815c055"
+      }
     }
   }
 }
