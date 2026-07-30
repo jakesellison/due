@@ -34,6 +34,15 @@ ruling: drop-to-ledger. Revisit any of these by extracting the module from
 - `lib/plan/draft.ts` (`summarizePlanDraft`) / `lib/planner/weekPlan.ts` (`weekDeltas`) — summary variants nothing consumed.
 - `lib/temperature.ts` (`formatTemperatureDelta`) — delta formatting; only the absolute formatter shipped.
 
+### IO-layer orphans (found when Phase 3 landed the components)
+
+- `app-lib/appEnv.ts` (`isProd`) · `app-lib/queries/planHeader.ts` (`planCaption`) ·
+  `app-lib/queries/shoes.ts` (`assignShoeToActivity`) · `app-lib/routes.ts`
+  (`useWorkoutRouteIds`) · `app-lib/sync.ts` (`useSyncStatus`) — exported, some
+  tested, consumed by nothing in the old repo either.
+- `lib/kpi/insights/comparableMile.ts` (`pickComparableMile`) + `stats.ts`
+  (`linearSlope`) — cascade of the easyHr drop (their only consumer).
+
 ## 2 · Capability gaps (the app should do this and doesn't)
 
 - Adapt engine computes reflow / lower-target / add-double proposals that no

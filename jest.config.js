@@ -21,8 +21,8 @@ module.exports = {
     {
       displayName: 'app',
       preset: 'jest-expo',
-      // Phase 2 scope: src/app-lib. Phase 3 adds src/components; Phase 4 adds app/.
-      roots: ['<rootDir>/src/app-lib'],
+      // Phase 4 adds app/.
+      roots: ['<rootDir>/src/app-lib', '<rootDir>/src/components'],
       testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/*.test.{ts,tsx}'],
       setupFiles: [
         '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js',

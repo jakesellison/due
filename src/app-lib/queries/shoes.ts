@@ -185,18 +185,6 @@ export async function deleteShoe(shoeId: string, qc?: QueryClient): Promise<void
   if (qc) await invalidateShoeCaches(qc);
 }
 
-/** Reassign (or clear) the shoe on one activity. */
-export async function assignShoeToActivity(
-  activityId: string,
-  shoeId: string | null,
-  qc?: QueryClient,
-): Promise<void> {
-  const { error } = await supabase.from('activities').update({ shoe_id: shoeId }).eq('id', activityId);
-  if (error) throw error;
-  if (qc) {
-    await Promise.all([invalidateShoeCaches(qc), qc.invalidateQueries({ queryKey: ['activities'] })]);
-  }
-}
 
 /**
  * Upload a shoe photo (base64 from expo-image-picker) to

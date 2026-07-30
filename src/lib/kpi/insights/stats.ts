@@ -19,10 +19,6 @@ export function median(xs: number[]): number {
   return n % 2 === 1 ? s[mid]! : (s[mid - 1]! + s[mid]!) / 2;
 }
 
-/** Slope of the least-squares line y ~ m*x + b. Returns 0 when x has no variance. */
-export function linearSlope(xs: number[], ys: number[]): number {
-  return leastSquares(xs, ys)?.slopeBpmPerC ?? 0;
-}
 
 /** Arithmetic mean of a non-empty array. */
 export function mean(xs: number[]): number {

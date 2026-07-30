@@ -217,23 +217,6 @@ export function useWorkoutRoute(userId: string | null, workoutId: string | null)
   });
 }
 
-/** One batched lookup for the Week surface's compact planned-route markers. */
-export function useWorkoutRouteIds(userId: string | null, workoutIds: string[]) {
-  return useQuery<Set<string>>({
-    queryKey: ['workoutRouteIds', userId, workoutIds],
-    enabled: !!userId && workoutIds.length > 0,
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('workout_route_selections')
-        .select('workout_id')
-        .eq('user_id', userId!)
-        .in('workout_id', workoutIds);
-      if (error) throw error;
-      return new Set((data ?? []).map((row) => row.workout_id as string));
-    },
-    initialData: () => new Set<string>(),
-  });
-}
 
 /** Select or replace a saved route for a planned workout. */
 export async function attachRouteToWorkout(

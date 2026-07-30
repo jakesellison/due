@@ -1,11 +1,5 @@
-import {
-  buildBoard,
-  type BoardDayInput,
-} from '../buildBoard';
-import {
-  dayComposition,
-  sumDayActuals,
-} from '../dayComposition';
+import { buildBoard, type BoardDayInput } from '../buildBoard';
+import { dayComposition, sumDayActuals } from '../dayComposition';
 
 const MI = 1609.34;
 const WEEK_START = '2026-07-27';

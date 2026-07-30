@@ -61,7 +61,6 @@ export const APP_ENV: AppEnvironment = isAppEnvironment(process.env.EXPO_PUBLIC_
     ? extra.appEnv
     : 'prod';
 
-export const isProd = APP_ENV === 'prod';
 
 /** The Supabase project ref inside a project URL, or null if unparseable. */
 export function projectRefOf(supabaseUrl: string): string | null {
