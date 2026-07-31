@@ -141,9 +141,6 @@ function ThemedStack() {
         <Stack.Screen name="shoes/[id]" options={{ presentation: 'modal', contentStyle: content }} />
         <Stack.Screen name="notifications" options={{ presentation: 'card', contentStyle: content }} />
         <Stack.Screen name="connections/strava" options={{ presentation: 'card', contentStyle: content }} />
-        {/* lab/ has its own layout (a __DEV__ gate — see app/lab/_layout.tsx),
-            so it registers as ONE segment here, not per-prototype screens. */}
-        <Stack.Screen name="lab" options={{ contentStyle: content }} />
         <Stack.Screen name="plan/history" options={{ presentation: 'modal', contentStyle: content }} />
         <Stack.Screen name="planner/[id]" options={{ presentation: 'fullScreenModal', contentStyle: content }} />
         <Stack.Screen

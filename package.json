@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "expo-router/entry",
   "scripts": {
-    "start": "node scripts/secrets.mjs -- npx expo start --port 8081",
+    "start": "node scripts/claim-port.mjs 8081 && node scripts/secrets.mjs -- npx expo start --port 8081",
     "typecheck": "tsc --noEmit",
     "check": "node checks/layers.mjs && node checks/orphans.mjs && node checks/facts.mjs && node checks/apiContracts.mjs && tsc --noEmit",
     "sweep": "node checks/sweep.mjs",
