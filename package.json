@@ -7,11 +7,12 @@
   "scripts": {
     "start": "node scripts/secrets.mjs -- npx expo start --port 8081",
     "typecheck": "tsc --noEmit",
-    "check": "node checks/layers.mjs && node checks/orphans.mjs && node checks/facts.mjs && tsc --noEmit",
+    "check": "node checks/layers.mjs && node checks/orphans.mjs && node checks/facts.mjs && node checks/apiContracts.mjs && tsc --noEmit",
     "sweep": "node checks/sweep.mjs",
     "test": "jest --selectProjects node",
-    "test:app": "jest --selectProjects app",
-    "test:all": "jest",
+    "test:app": "jest --selectProjects app --runInBand --forceExit",
+    "test:all": "jest --runInBand --forceExit",
+    "test:ci": "jest --runInBand --forceExit --coverage",
     "build:api": "esbuild src/server/cloudRun.ts --bundle --platform=node --target=node22 --format=cjs --outfile=dist/cloud-run/server.cjs"
   },
   "dependencies": {

@@ -30,5 +30,3 @@ export * from './planExport';
 export * from './shoes';
 export * from './cache';
 
-// Re-export so screens can reference weekStartOf if needed without a deep import.
-export { weekStartOf } from '@/lib';

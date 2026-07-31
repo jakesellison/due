@@ -1,8 +1,6 @@
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 
 const mockSetCameraPosition = jest.fn();
 
@@ -80,20 +78,7 @@ import RouteBuilderScreen from '../routes/new';
 async function renderScreen(): Promise<ReactTestRenderer> {
   let tree!: ReactTestRenderer;
   await act(async () => {
-    tree = create(
-      <QueryClientProvider client={new QueryClient()}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">
-            <RouteBuilderScreen />
-          </ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(<RouteBuilderScreen />));
     await Promise.resolve();
   });
   return tree;

@@ -6,6 +6,32 @@
  */
 module.exports = {
   watchman: false,
+  // Coverage is measured against the whole codebase, not just files a test
+  // happens to load — untested files count as 0%, so the floors below are
+  // honest. Floors are a RATCHET set just under measured reality (see
+  // docs/audits/2026-07-30-test-audit.md): they exist to catch decay, not to
+  // be a target. Re-measure and raise them after closing a coverage gap.
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    'app/**/*.{ts,tsx}',
+    'api/**/*.ts',
+    '!**/__tests__/**',
+    '!**/__testsupport__/**',
+    '!**/__sim__/**',
+  ],
+  coverageReporters: ['text-summary', 'json-summary'],
+  // Measured 2026-07-31 (jest's own group aggregates): lib 77.5 / server 76.6 /
+  // components 73.6 / app 71.8 / app-lib 60.1 / api 55.4 lines. Floors sit
+  // ~2pts under; `global` covers whatever the path groups don't claim (theme).
+  coverageThreshold: {
+    global: { lines: 70 },
+    './src/lib/': { lines: 75 },
+    './src/server/': { lines: 74 },
+    './src/components/': { lines: 71 },
+    './src/app-lib/': { lines: 58 },
+    './app/': { lines: 69 },
+    './api/': { lines: 53 },
+  },
   projects: [
     {
       displayName: 'node',

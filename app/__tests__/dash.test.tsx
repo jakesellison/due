@@ -6,10 +6,8 @@
  * two-proposal week stacks two cards — each with its own Apply button.
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/theme/ThemeProvider';
 
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import type { Adaptation, BlockSummary, CalendarDay } from '@/lib';
 import { SyncStatusRow } from '@/components/dash/SyncStatusRow';
 
@@ -220,21 +218,9 @@ const lowerTarget: Adaptation = {
 // ---- Helpers ---------------------------------------------------------------
 
 async function render(node: React.ReactElement): Promise<ReactTestRenderer> {
-  const qc = new QueryClient();
   let tree!: ReactTestRenderer;
   await act(async () => {
-    tree = create(
-      <QueryClientProvider client={qc}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">{node}</ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   // Flush the seed effect (ensureSamplePlan resolves -> setSeedDone(true)).
   await act(async () => {
@@ -601,20 +587,7 @@ describe('DashScreen run-completion moment — Fix 2 (weekGoals/activities race)
     // (a bare `<DashScreen />` has no QueryClientProvider in scope).
     mockWeekly.value = raceWeekly(33 * MI, [RUN_ID]);
     await act(async () => {
-      tree.update(
-        <QueryClientProvider client={new QueryClient()}>
-          <SafeAreaProvider
-            initialMetrics={{
-              frame: { x: 0, y: 0, width: 390, height: 844 },
-              insets: { top: 47, left: 0, right: 0, bottom: 34 },
-            }}
-          >
-            <ThemeProvider preference="dark">
-              <DashScreen />
-            </ThemeProvider>
-          </SafeAreaProvider>
-        </QueryClientProvider>,
-      );
+      tree.update(screenWrapper(<DashScreen />));
     });
 
     // DECIDED, and it closed the contract: the milestone renders. It was NOT

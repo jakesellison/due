@@ -9,6 +9,7 @@
  *      the session scratchpad, never the repo.
  *   2. No orphaned exports (checks/orphans.mjs).
  *   3. No layer violations (checks/layers.mjs).
+ *   4. No api/ handler without a contract test (checks/apiContracts.mjs).
  *
  * Deliberately NOT here: typecheck and tests — too slow for a stop gate; they
  * run in `npm run check` and CI.
@@ -22,7 +23,7 @@ const ROOT_ALLOWLIST = new Set([
   '.claude', '.expo', '.git', '.github', '.gitignore', 'CLAUDE.md', 'DESIGN.md',
   'api', 'app.config.js', 'jest.setup.app.js', 'plugins', 'scripts', 'secrets.manifest.json',
   'MISSING.md', 'README.md', 'app', 'app.json', 'assets', 'babel.config.js',
-  'checks', 'docs', 'jest.config.js', 'metro.config.js', 'node_modules', 'package-lock.json',
+  'checks', 'coverage', 'docs', 'jest.config.js', 'metro.config.js', 'node_modules', 'package-lock.json',
   'package.json', 'src', 'tsconfig.json', 'expo-env.d.ts',
 ]);
 
@@ -33,7 +34,7 @@ for (const entry of rootEntries) {
   if (!ROOT_ALLOWLIST.has(entry)) problems.push(`stray root entry: ${entry} (scratch belongs in the session scratchpad)`);
 }
 
-for (const check of ['checks/orphans.mjs', 'checks/layers.mjs']) {
+for (const check of ['checks/orphans.mjs', 'checks/layers.mjs', 'checks/apiContracts.mjs']) {
   const r = spawnSync('node', [check], { encoding: 'utf8' });
   if (r.status !== 0) problems.push(`${check} failed:\n${(r.stderr || r.stdout).trim()}`);
 }

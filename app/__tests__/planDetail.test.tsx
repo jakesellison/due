@@ -7,9 +7,8 @@
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { Text } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/theme/ThemeProvider';
+
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 
 const mockSession: { value: { userId: string | null; ready: boolean; error: Error | null } } = {
   value: { userId: 'u1', ready: true, error: null },
@@ -44,17 +43,8 @@ import PlanDetailScreen from '../plans/[id]';
 
 function renderTree(node: React.ReactElement): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider
-          initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, left: 0, right: 0, bottom: 34 } }}
-        >
-          <ThemeProvider preference="dark">{node}</ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   return tree!;
 }

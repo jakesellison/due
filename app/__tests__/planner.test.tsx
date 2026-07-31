@@ -8,12 +8,9 @@
  * double regression), and the save gate.
  */
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react-native';
+import { act, fireEvent, screen } from '@testing-library/react-native';
 
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { renderScreen } from '@/app-lib/__testsupport__/render';
 import type { CalendarDay } from '@/lib';
 
 const MI = 1609.34;
@@ -103,20 +100,7 @@ jest.mock('@/app-lib/queries', () => ({
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const PlannerScreen = require('../planner/[id]').default;
 
-const METRICS = {
-  frame: { x: 0, y: 0, width: 390, height: 844 },
-  insets: { top: 47, left: 0, right: 0, bottom: 34 },
-};
-const renderPlanner = () =>
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <SafeAreaProvider initialMetrics={METRICS}>
-        <ThemeProvider preference="dark">
-          <PlannerScreen />
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </QueryClientProvider>,
-  );
+const renderPlanner = () => renderScreen(<PlannerScreen />);
 
 beforeEach(() => jest.clearAllMocks());
 

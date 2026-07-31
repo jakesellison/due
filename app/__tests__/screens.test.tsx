@@ -39,9 +39,7 @@ function flattenStyle(style: unknown): Record<string, unknown> | undefined {
   if (typeof style === 'object') return style as Record<string, unknown>;
   return undefined;
 }
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 
 import type { ActivityDetail, ActivityRow, PlanView, RacePredictionView, WeekDetail, WorkoutDetail } from '@/app-lib/queries';
 import { goalStat, summarizeBlock, type WeekGoal } from '@/lib';
@@ -328,20 +326,8 @@ function liveProjectionDays() {
 
 function renderTree(node: React.ReactElement): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">{node}</ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   return tree!;
 }

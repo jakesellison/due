@@ -10,11 +10,9 @@
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { ActionSheetIOS, Alert, Image, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import type { MyPlan } from '@/app-lib/queries';
-import { ThemeProvider } from '@/theme/ThemeProvider';
 
 function flattenText(c: unknown): string {
   if (typeof c === 'string') return c;
@@ -62,22 +60,8 @@ import PlansHome from '../plans/index';
 
 function renderTree(): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">
-            <PlansHome />
-          </ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(<PlansHome />));
   });
   return tree!;
 }

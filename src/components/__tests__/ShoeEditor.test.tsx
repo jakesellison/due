@@ -6,10 +6,9 @@
  * create a NEW shoe instead of editing. New-shoe mode (shoeId=null) has no
  * data to wait on and must render the form immediately.
  */
-import { fireEvent, render, screen } from '@testing-library/react-native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { fireEvent, screen } from '@testing-library/react-native';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { renderScreen } from '@/app-lib/__testsupport__/render';
 import type { Shoe } from '@/app-lib/queries';
 
 const mockSession: { value: { userId: string | null; ready: boolean; error: Error | null } } = {
@@ -43,14 +42,7 @@ jest.mock('@/app-lib/queries', () => ({
 import { ShoeEditor } from '../ShoeEditor';
 
 function renderEditor(shoeId: string | null) {
-  const qc = new QueryClient();
-  return render(
-    <QueryClientProvider client={qc}>
-      <ThemeProvider preference="dark">
-        <ShoeEditor shoeId={shoeId} />
-      </ThemeProvider>
-    </QueryClientProvider>,
-  );
+  return renderScreen(<ShoeEditor shoeId={shoeId} />);
 }
 
 function mkShoe(over: Partial<Shoe> = {}): Shoe {

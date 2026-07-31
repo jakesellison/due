@@ -5,11 +5,9 @@
  * that most commonly regresses (missing/empty data) — not interaction suites.
  */
 import React from 'react';
-import { render, screen } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { screen } from '@testing-library/react-native';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { renderScreen } from '@/app-lib/__testsupport__/render';
 
 const MI = 1609.34;
 
@@ -55,18 +53,7 @@ jest.mock('@rnmapbox/maps', () => ({
   LineLayer: () => null, CircleLayer: () => null,
 }));
 
-const METRICS = {
-  frame: { x: 0, y: 0, width: 390, height: 844 },
-  insets: { top: 47, left: 0, right: 0, bottom: 34 },
-};
-const wrap = (el: React.ReactElement) =>
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <SafeAreaProvider initialMetrics={METRICS}>
-        <ThemeProvider preference="dark">{el}</ThemeProvider>
-      </SafeAreaProvider>
-    </QueryClientProvider>,
-  );
+const wrap = (el: React.ReactElement) => renderScreen(el);
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const RouteDetail = require('../routes/[id]').default;

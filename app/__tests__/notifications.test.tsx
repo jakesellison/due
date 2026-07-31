@@ -1,9 +1,8 @@
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { Linking, Switch, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 
 const mockBack = jest.fn();
 const mockRegisterPush = jest.fn(async () => ({ ok: true as const }));
@@ -34,18 +33,7 @@ import NotificationSettingsScreen from '../notifications';
 function renderTree(): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
   act(() => {
-    tree = create(
-      <SafeAreaProvider
-        initialMetrics={{
-          frame: { x: 0, y: 0, width: 390, height: 844 },
-          insets: { top: 47, left: 0, right: 0, bottom: 34 },
-        }}
-      >
-        <ThemeProvider preference="dark">
-          <NotificationSettingsScreen />
-        </ThemeProvider>
-      </SafeAreaProvider>,
-    );
+    tree = create(screenWrapper(<NotificationSettingsScreen />));
   });
   return tree!;
 }

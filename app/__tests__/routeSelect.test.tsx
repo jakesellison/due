@@ -1,8 +1,6 @@
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import type { SavedRoute } from '@/app-lib/routes';
 
 const mockPush = jest.fn();
@@ -53,13 +51,7 @@ import SelectRouteScreen from '../routes/select';
 function renderScreen(): ReactTestRenderer {
   let tree!: ReactTestRenderer;
   act(() => {
-    tree = create(
-      <QueryClientProvider client={new QueryClient()}>
-        <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, left: 0, right: 0, bottom: 34 } }}>
-          <ThemeProvider preference="dark"><SelectRouteScreen /></ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(<SelectRouteScreen />));
   });
   return tree;
 }

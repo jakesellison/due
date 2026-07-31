@@ -14,10 +14,8 @@
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { StyleSheet } from 'react-native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import { space } from '@/theme/tokens';
 import type { ActivityRow } from '@/app-lib/queries';
 import type { RunStream } from '@/lib/kpi/qualityDetect';
@@ -217,23 +215,9 @@ const preV2Legacy = baseActivity({
 
 async function render(activity: ActivityRow): Promise<ReactTestRenderer> {
   mockActivity.value = activity;
-  const qc = new QueryClient();
   let tree!: ReactTestRenderer;
   await act(async () => {
-    tree = create(
-      <QueryClientProvider client={qc}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">
-            <SessionView activityId={activity.id} />
-          </ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(<SessionView activityId={activity.id} />));
   });
   return tree;
 }

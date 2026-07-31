@@ -6,11 +6,10 @@
  * creeping back into the bar.
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type { BottomTabBarProps } from 'expo-router/build/react-navigation/bottom-tabs';
 
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import { GlassTabBar } from '@/components/GlassTabBar';
-import { ThemeProvider } from '@/theme/ThemeProvider';
 
 /** A minimal BottomTabBarProps for the three tab routes, in order. */
 function makeProps(): BottomTabBarProps {
@@ -34,16 +33,7 @@ function makeProps(): BottomTabBarProps {
 function render(node: React.ReactElement): ReactTestRenderer {
   let tree!: ReactTestRenderer;
   act(() => {
-    tree = create(
-      <SafeAreaProvider
-        initialMetrics={{
-          frame: { x: 0, y: 0, width: 390, height: 844 },
-          insets: { top: 47, left: 0, right: 0, bottom: 34 },
-        }}
-      >
-        <ThemeProvider preference="dark">{node}</ThemeProvider>
-      </SafeAreaProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   return tree;
 }

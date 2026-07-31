@@ -7,14 +7,12 @@
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { ActionSheetIOS, Alert, RefreshControl, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import { resetAppPreferencesForTests } from '@/app-lib/preferences';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import type { StravaStatus, UseStravaStatus } from '@/app-lib/strava';
 import type { MyPlan, Shoe } from '@/app-lib/queries';
 import { resetBackfillStatusForTests } from '@/app-lib/backfillStatus';
-import { ThemeProvider } from '@/theme/ThemeProvider';
 
 function flattenText(c: unknown): string {
   if (typeof c === 'string') return c;
@@ -112,22 +110,8 @@ import SettingsScreen from '../(tabs)/you';
 
 function renderTree(): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">
-            <SettingsScreen />
-          </ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(<SettingsScreen />));
   });
   return tree!;
 }

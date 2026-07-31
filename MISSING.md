@@ -43,6 +43,11 @@ ruling: drop-to-ledger. Revisit any of these by extracting the module from
   tested, consumed by nothing in the old repo either.
 - `lib/kpi/insights/comparableMile.ts` (`pickComparableMile`) + `stats.ts`
   (`linearSlope`) — cascade of the easyHr drop (their only consumer).
+- `server/ingest.ts` (`countHardLaps` + `HardLapOpts`) — HR-threshold lap
+  counter, tested but consumed by nothing in either repo (superseded by the
+  stream-summary workout interpreter). Dropped 2026-07-31 when the orphan
+  check's TEST_SEAMS registry was retired; it was the registry's only
+  real entry.
 
 ## 2 · Capability gaps (the app should do this and doesn't)
 

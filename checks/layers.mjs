@@ -34,7 +34,7 @@ const MODULE_BANS = [
 const ALIAS = { '@/': 'src/' };
 
 const files = execSync("git ls-files 'src/**/*.ts' 'src/**/*.tsx'", { encoding: 'utf8' })
-  .split('\n').filter(Boolean).filter((f) => !f.includes('__tests__') && !f.includes('__sim__'));
+  .split('\n').filter(Boolean).filter((f) => !f.includes('__tests__') && !f.includes('__sim__') && !f.includes('__testsupport__'));
 
 const violations = [];
 for (const file of files) {

@@ -15,12 +15,8 @@
 import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 
-const isTest = (f) => f.includes('__tests__') || f.includes('__sim__');
+const isTest = (f) => f.includes('__tests__') || f.includes('__sim__') || f.includes('__testsupport__');
 const BARRELS = new Set(['src/lib/index.ts']);
-
-// Named test seams that don't follow the __/ForTests convention: exported so
-// the node suite can drive internals directly. A prod consumer would be a bug.
-const TEST_SEAMS = new Set(['src/server/ingest.ts#countHardLaps', 'api/strava/webhook.ts#processEvent', 'src/app-lib/pushNotifications.ts#routeFromResponse']);
 
 const baseline = new Set(JSON.parse(readFileSync('checks/orphans.baseline.json', 'utf8')));
 
@@ -41,7 +37,6 @@ for (const file of srcFiles) {
     // Deliberate test seams (reset hooks, __testing handles) exist FOR tests;
     // a prod consumer would be a bug, not a goal.
     if (/^__|ForTests$/.test(name)) continue;
-    if (TEST_SEAMS.has(`${file}#${name}`)) continue;
     const key = `${file}#${name}`;
     if (baseline.has(key)) continue;
     // Used inside its own file (beyond the declaration) → should be private,

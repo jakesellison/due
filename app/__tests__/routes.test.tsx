@@ -8,10 +8,8 @@
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { RefreshControl, Text } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import type { SavedRoute } from '@/app-lib/routes';
 
 /** Flatten nested string/number children to a single string. */
@@ -59,21 +57,9 @@ function hasLabel(tree: ReactTestRenderer, label: string): boolean {
 }
 
 function render(node: React.ReactElement): ReactTestRenderer {
-  const qc = new QueryClient();
   let tree!: ReactTestRenderer;
   act(() => {
-    tree = create(
-      <SafeAreaProvider
-        initialMetrics={{
-          frame: { x: 0, y: 0, width: 390, height: 844 },
-          insets: { top: 47, left: 0, right: 0, bottom: 34 },
-        }}
-      >
-        <QueryClientProvider client={qc}>
-          <ThemeProvider preference="dark">{node}</ThemeProvider>
-        </QueryClientProvider>
-      </SafeAreaProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   return tree;
 }

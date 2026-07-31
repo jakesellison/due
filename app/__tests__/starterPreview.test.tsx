@@ -8,10 +8,8 @@
  */
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { Alert, Image, Text, View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import type { ImportedPlanDraft } from '@/lib';
 import { todayIsoDate, type PlanAnchor } from '@/lib/plan/anchor';
 import { weekStartOf } from '@/lib/time/week';
@@ -65,17 +63,8 @@ import { AnchorSheet } from '@/components/plan/AnchorSheet';
 
 function renderTree(): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <ThemeProvider preference="dark">
-        <QueryClientProvider client={queryClient}>
-          <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, left: 0, right: 0, bottom: 34 } }}>
-            <StarterPreviewScreen />
-          </SafeAreaProvider>
-        </QueryClientProvider>
-      </ThemeProvider>,
-    );
+    tree = create(screenWrapper(<StarterPreviewScreen />));
   });
   return tree!;
 }

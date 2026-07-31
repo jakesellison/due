@@ -174,10 +174,10 @@ function handleValidation(req: ApiRequest, res: ApiResponse): void {
   res.status(403).json({ error: 'Verification failed' });
 }
 
-/** Exported as a named test seam (checks/orphans.mjs TEST_SEAMS): the
- *  deauthorization gating below is the most destructive path in the app, and
- *  mutation testing proved the verdict alone was tested while the GATING was
- *  not — a deleted guard survived the whole suite. */
+/** Exported as a test seam: the deauthorization gating below is the most
+ *  destructive path in the app, and mutation testing proved the verdict alone
+ *  was tested while the GATING was not — a deleted guard survived the whole
+ *  suite. */
 export async function processEvent(event: StravaEvent): Promise<void> {
   if (event.owner_id == null) return;
 

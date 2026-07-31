@@ -10,3 +10,4 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: node checks/sweep.mjs --ci
+      - run: npm run test:ci

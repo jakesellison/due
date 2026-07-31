@@ -33,6 +33,17 @@ if (rel === 'checks/orphans.baseline.json' && (t.new_string ?? t.content ?? '').
   deny('BASELINE GATE: adding an orphan exception requires a MISSING.md ledger line in the same change and a stated same-phase consumer. Do that first, then retry with the ledger line written.');
 }
 
+// 2b. Same gate for the handler-contract baseline: it only ever shrinks. A
+//     growth attempt means an untested handler is trying to ship — write the
+//     contract test instead. Compares entry counts so shrinking stays free.
+if (rel === 'checks/apiContracts.baseline.json') {
+  const count = (s) => (String(s).match(/"api\//g) ?? []).length;
+  const grew = t.content != null
+    ? count(t.content) > count((() => { try { return readFileSync(file, 'utf8'); } catch { return ''; } })())
+    : count(t.new_string ?? '') > count(t.old_string ?? '');
+  if (grew) deny('BASELINE GATE: a handler may not ship untested. Write a contract test that imports it (template: src/server/__tests__/apiHandlerContracts.test.ts) instead of growing checks/apiContracts.baseline.json.');
+}
+
 // 3. MISSING.md is append-mostly: an Edit that deletes a ledger bullet without
 //    replacing it is how drops go silent.
 if (rel === 'MISSING.md' && t.old_string && /^- /m.test(t.old_string) && !/^- /m.test(t.new_string ?? '')) {

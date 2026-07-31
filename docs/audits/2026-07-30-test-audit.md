@@ -88,3 +88,26 @@ files.
 
 Suite after closure: node 1,322 · app 694 (was 1,300 / 664). New named test
 seams (checks/orphans.mjs TEST_SEAMS): `processEvent`, `routeFromResponse`.
+
+## Design follow-through (2026-07-31)
+
+Owner ruling on the audit's process findings: **change the design so the
+gotchas can't exist, rather than documenting them.** Executed as:
+
+| Finding | Design change (not a doc) |
+| --- | --- |
+| `test:app` needs `--runInBand --forceExit` (tribal) | Flags baked into `test:app`/`test:all`/`test:ci` scripts; nobody types raw flags |
+| Mutation harness lived in `/tmp` | `scripts/mutate.sh`, with the KILLED/SURVIVED contract in its header |
+| Provider stack hand-rolled in 18 suites | `src/app-lib/__testsupport__/render.tsx` (`renderScreen`/`screenWrapper`); all 18 refactored, both RTL and legacy `create()` suites |
+| TEST_SEAMS registry needed explaining | Registry deleted: 2 entries were redundant (self-consumed exports), and `countHardLaps` was dead code in both repos — dropped + MISSING.md ledger |
+| Barrel `requireActual` crash | Root cause was `queries/index.ts` re-exporting `weekStartOf` from `@/lib` (zero consumers) — deleted |
+| Handler-wiring blind spot (both mutation survivors) | `checks/apiContracts.mjs`: every `api/` handler must be imported by a test; baseline = `auth.ts`, `refresh.ts` (the documented-thin pair); stale entries fail; pre-write hook denies baseline growth |
+| Coverage measured once, nothing holds it | **CI never ran jest at all** (checks+sweep only) — now runs `test:ci`; coverage measured against the whole tree (`collectCoverageFrom`), directory-level line floors ~2pts under jest's group aggregates |
+
+Post-change state: 215 suites / 2,012 tests green in one 20s `test:ci` run,
+thresholds pass, sweep clean. Node suite is 1,318 (−4: the deleted
+`countHardLaps` tests left with their dead subject).
+
+Not designed away (accepted residue): the react-test-renderer exact pin
+(the pin itself is the fix) and RN API-location trivia (`Linking` is
+react-native's) — the refactored suites are the living examples.

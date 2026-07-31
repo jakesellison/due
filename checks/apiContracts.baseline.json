@@ -1,0 +1,4 @@
+[
+  "api/strava/auth.ts",
+  "api/strava/refresh.ts"
+]

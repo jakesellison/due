@@ -23,11 +23,10 @@ function flattenText(c: unknown): string {
   return '';
 }
 
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { waitFor } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ThemeProvider } from '@/theme/ThemeProvider';
+
+import { screenWrapper } from '@/app-lib/__testsupport__/render';
 import { THEMES } from '@/theme/tokens';
 
 import type { ActivityRow, WorkoutDetail } from '@/app-lib/queries';
@@ -118,20 +117,8 @@ import { SessionView } from '@/components/session/SessionView';
 
 function renderTree(node: React.ReactElement): ReactTestRenderer {
   let tree: ReactTestRenderer | undefined;
-  const queryClient = new QueryClient();
   act(() => {
-    tree = create(
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider
-          initialMetrics={{
-            frame: { x: 0, y: 0, width: 390, height: 844 },
-            insets: { top: 47, left: 0, right: 0, bottom: 34 },
-          }}
-        >
-          <ThemeProvider preference="dark">{node}</ThemeProvider>
-        </SafeAreaProvider>
-      </QueryClientProvider>,
-    );
+    tree = create(screenWrapper(node));
   });
   return tree!;
 }
@@ -370,13 +357,7 @@ describe('SessionView via workoutId', () => {
         }
         return idleActivity;
       });
-      tree.update(
-        <QueryClientProvider client={new (require('@tanstack/react-query').QueryClient)()}>
-          <SafeAreaProvider initialMetrics={{ frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, left: 0, right: 0, bottom: 34 } }}>
-            <ThemeProvider preference="dark"><SessionView workoutId="w-quality" /></ThemeProvider>
-          </SafeAreaProvider>
-        </QueryClientProvider>,
-      );
+      tree.update(screenWrapper(<SessionView workoutId="w-quality" />));
     });
     const text2 = textOf(tree);
     expect(text2).toContain('Threshold Repeats');

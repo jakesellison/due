@@ -5,7 +5,6 @@ jest.mock('../strava', () => ({
 import {
   mapStravaActivity,
   mapBestEfforts,
-  countHardLaps,
   getConnectionByAthlete,
   ensureFreshAccessToken,
   isRevokedTokenError,
@@ -185,30 +184,6 @@ describe('withEnrichedAt', () => {
   });
 });
 
-describe('countHardLaps', () => {
-  it('counts laps at or above the default threshold (160)', () => {
-    // 150(no), 162(yes), 165(yes), 159(no) => 2
-    expect(countHardLaps(fullActivity.laps)).toBe(2);
-  });
-
-  it('returns 0 for empty or undefined laps', () => {
-    expect(countHardLaps([])).toBe(0);
-    expect(countHardLaps(undefined)).toBe(0);
-    expect(countHardLaps(null)).toBe(0);
-  });
-
-  it('honors a custom threshold', () => {
-    // threshold 165 => only the 165 lap counts => 1
-    expect(countHardLaps(fullActivity.laps, { hrThreshold: 165 })).toBe(1);
-    // threshold 150 => 150,162,165,159 all >= 150 => 4
-    expect(countHardLaps(fullActivity.laps, { hrThreshold: 150 })).toBe(4);
-  });
-
-  it('ignores laps with no HR', () => {
-    const laps = [{ average_heartrate: 170 }, { average_heartrate: null }, {}];
-    expect(countHardLaps(laps)).toBe(1);
-  });
-});
 
 describe('mapBestEfforts', () => {
   it('returns null for absent/empty input', () => {

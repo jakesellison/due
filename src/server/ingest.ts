@@ -196,32 +196,6 @@ export function mapStravaActivity(raw: StravaActivity, tz: string): ActivityRow 
   };
 }
 
-export interface HardLapOpts {
-  /** Average-HR threshold a lap must meet/exceed to count as hard. Default 160. */
-  hrThreshold?: number;
-}
-
-/**
- * Count "hard" laps. PURE.
- *
- * For this task a lap counts as hard when its `average_heartrate` is >= the
- * threshold (default 160). Laps without HR are not counted. A pace-based
- * heuristic is a future enhancement.
- */
-export function countHardLaps(
-  laps: StravaLap[] | null | undefined,
-  opts: HardLapOpts = {},
-): number {
-  if (!laps || laps.length === 0) return 0;
-  const threshold = opts.hrThreshold ?? 160;
-  let count = 0;
-  for (const lap of laps) {
-    const hr = lap.average_heartrate;
-    if (hr != null && hr >= threshold) count += 1;
-  }
-  return count;
-}
-
 /**
  * Returns `row` with `enriched_at` stamped to `now` (default: the real current
  * time). PURE aside from the injectable clock. Called right before upsert in
