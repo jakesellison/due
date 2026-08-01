@@ -120,7 +120,7 @@ export type ConnectResult = 'connected' | 'dismissed' | 'cancelled' | 'error';
  * Returns 'connected' when the redirect round-trips, else the browser result
  * type. Does NOT itself verify the connection — callers re-probe via status.
  */
-export async function connectStrava(): Promise<ConnectResult> {
+export async function connectStrava(opts: { write?: boolean } = {}): Promise<ConnectResult> {
   const { data } = await supabase.auth.getSession();
   const accessToken = data.session?.access_token;
   if (!accessToken) return 'error';
@@ -128,7 +128,13 @@ export async function connectStrava(): Promise<ConnectResult> {
   try {
     const res = await resilientFetch(`${API_BASE}/api/strava/auth`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      // Scope escalation: only the Plan-context reconnect asks for
+      // activity:write; a plain connect is read-only.
+      body: JSON.stringify(opts.write ? { write: true } : {}),
     });
     if (!res.ok) return 'error';
     const { authUrl } = (await res.json()) as { authUrl?: string };

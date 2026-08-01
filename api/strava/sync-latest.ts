@@ -3,6 +3,7 @@ import { methodAllowed, requireUser } from '../../src/server/apiAuth';
 import { rateLimit } from '../../src/server/rateLimit';
 import { createAdminClient } from '../../src/server/supabaseAdmin';
 import { captureError } from '../../src/server/report';
+import { retryAfterSeconds } from '../../src/server/strava';
 import {
   ensureFreshAccessToken,
   getUserTz,
@@ -22,7 +23,9 @@ import {
 
 const STRAVA_API = 'https://www.strava.com/api/v3';
 
-class RateLimited extends Error {}
+class RateLimited extends Error {
+  constructor(readonly retryAfterS: number) { super('strava rate limited'); }
+}
 
 export default async function handler(req: ApiRequest, res: ApiResponse): Promise<void> {
   if (!methodAllowed(req, res, ['POST'])) return;
@@ -46,7 +49,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse): Promis
     await runLatestSummaries(admin, conn, (req.body as { cursor?: unknown } | undefined)?.cursor, res);
   } catch (err) {
     if (err instanceof RateLimited) {
-      res.status(200).json({ phase: 'summaries', mode: 'latest', rateLimited: true, retryAfterS: 900 });
+      res.status(200).json({ phase: 'summaries', mode: 'latest', rateLimited: true, retryAfterS: err.retryAfterS });
       return;
     }
     console.error('strava/sync-latest failed:', err);
@@ -87,7 +90,7 @@ async function runLatestSummaries(
     `${STRAVA_API}/athlete/activities?per_page=${SUMMARY_PER_PAGE}` +
     `&page=${page}&after=${after}`;
   const resp = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
-  if (resp.status === 429) throw new RateLimited();
+  if (resp.status === 429) throw new RateLimited(retryAfterSeconds(resp) ?? 900);
   if (!resp.ok) throw new Error(`athlete/activities failed: ${resp.status} ${await resp.text()}`);
 
   const list = (await resp.json()) as StravaSummaryActivity[];

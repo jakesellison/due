@@ -298,14 +298,26 @@ export function isRevokedTokenError(err: unknown): boolean {
   return /token refresh failed:\s*(400|401)\b/.test(message);
 }
 
-/** Mark a connection inactive so it stops triggering ingests/refreshes. IO. */
+/** Mark a connection inactive so it stops triggering ingests/refreshes, and
+ *  delete the credentials it held. IO.
+ *
+ *  The Strava API Policy requires deleting Strava Data after deauthorization —
+ *  revoked OAuth tokens and the athlete id are exactly that, and a revoked row
+ *  has no legitimate use for them. Reconnecting mints fresh tokens and re-links
+ *  the athlete id via the callback upsert. */
 export async function deactivateConnection(
   admin: SupabaseClient,
   userId: string,
 ): Promise<void> {
   await admin
     .from('integration_connections')
-    .update({ status: 'revoked' })
+    .update({
+      status: 'revoked',
+      access_token: null,
+      refresh_token: null,
+      expires_at: null,
+      provider_athlete_id: null,
+    })
     .eq('user_id', userId)
     .eq('provider', 'strava');
 }

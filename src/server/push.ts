@@ -54,8 +54,15 @@ export async function maybeSendRunBankedPush(
 
   const url = `duerunning://run/${row.id}`;
   const body = bankedBody(distanceMeters, quality);
-  const messages = list.map((t) => ({ to: t.token, title: 'Run banked', body, sound: 'default', data: { url } }));
+  const sent = await sendToTokens(list.map((t) => t.token), 'Run banked', body, url);
+  if (!sent) return;
+  // Stamp so an `update` webhook (or a retry) never double-fires for this run.
+  await admin.from('activities').update({ push_sent_at: new Date().toISOString() }).eq('id', row.id);
+}
 
+/** POST one batch to the Expo push service. Returns false on non-OK. */
+async function sendToTokens(tokens: string[], title: string, body: string, url?: string): Promise<boolean> {
+  const messages = tokens.map((to) => ({ to, title, body, sound: 'default', ...(url ? { data: { url } } : {}) }));
   const res = await fetch(EXPO_PUSH_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -63,8 +70,24 @@ export async function maybeSendRunBankedPush(
   });
   if (!res.ok) {
     console.warn('[push] Expo send failed', res.status, await res.text());
-    return;
+    return false;
   }
-  // Stamp so an `update` webhook (or a retry) never double-fires for this run.
-  await admin.from('activities').update({ push_sent_at: new Date().toISOString() }).eq('id', row.id);
+  return true;
+}
+
+/**
+ * Written confirmation of deletion after a webhook deauthorization — the
+ * Strava API Policy requires confirming successful deletion to the user, and a
+ * deauthorization initiated from Strava's settings happens outside the app, so
+ * a push is the only channel we have. Best-effort like every push.
+ */
+export async function sendStravaDataDeletedPush(admin: SupabaseClient, userId: string): Promise<void> {
+  const { data: tokens } = await admin.from('push_tokens').select('token').eq('user_id', userId);
+  const list = (tokens ?? []) as { token: string }[];
+  if (list.length === 0) return;
+  await sendToTokens(
+    list.map((t) => t.token),
+    'Strava disconnected',
+    'Your Strava access was revoked, and all Strava-synced runs have been deleted from Due.',
+  );
 }

@@ -36,6 +36,7 @@ import { ModalFooter } from '@/components/ModalFooter';
 import { SheetGrabberHeader } from '@/components/SheetGrabberHeader';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { display, fontSizes, radius, space, typeRole, type Tokens } from '@/theme/tokens';
+import { PoweredByStrava } from './StravaAttribution';
 
 /**
  * Add/edit a shoe — one screen for both modes (`shoeId` null = create). Name,
@@ -319,6 +320,7 @@ export function ShoeEditor({ shoeId }: { shoeId: string | null }) {
               </View>
             </View>
           ) : null}
+          <PoweredByStrava />
         </ScrollView>
 
         <ModalFooter>

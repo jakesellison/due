@@ -24,7 +24,7 @@ const ROOT_ALLOWLIST = new Set([
   'api', 'app.config.js', 'jest.setup.app.js', 'plugins', 'scripts', 'secrets.manifest.json',
   'MISSING.md', 'README.md', 'app', 'app.json', 'assets', 'babel.config.js',
   'checks', 'coverage', 'docs', 'jest.config.js', 'metro.config.js', 'node_modules', 'package-lock.json',
-  'package.json', 'src', 'tsconfig.json', 'expo-env.d.ts',
+  'package.json', 'src', 'supabase', 'tsconfig.json', 'expo-env.d.ts',
 ]);
 
 const problems = [];

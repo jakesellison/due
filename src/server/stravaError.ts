@@ -30,18 +30,33 @@ export type StravaOperation = 'token-exchange' | 'token-refresh' | 'activity' | 
 export class StravaHttpError extends Error {
   readonly status: number;
   readonly operation: StravaOperation;
+  /** Seconds until the exhausted rate-limit window resets, when the 429
+   *  response carried enough header signal to compute it (see
+   *  `retryAfterSeconds` in strava.ts). Undefined for non-429 errors. */
+  readonly retryAfterS?: number;
 
-  constructor(operation: StravaOperation, status: number, message: string) {
+  constructor(operation: StravaOperation, status: number, message: string, retryAfterS?: number) {
     super(message);
     this.name = 'StravaHttpError';
     this.status = status;
     this.operation = operation;
+    this.retryAfterS = retryAfterS;
   }
 }
 
 /** True when `err` is a Strava rate-limit (429) response. */
 export function isStravaRateLimited(err: unknown): boolean {
   return err instanceof StravaHttpError && err.status === 429;
+}
+
+/**
+ * The back-off to report for a rate-limited call: the window-derived value the
+ * 429 response carried, else the historical fixed 900s guess. Callers stop
+ * hardcoding 900 so the app resumes when Strava actually resets, not a fixed
+ * quarter-hour after whenever we happened to hit the wall.
+ */
+export function stravaRetryAfterS(err: unknown, fallbackS = 900): number {
+  return err instanceof StravaHttpError && err.retryAfterS != null ? err.retryAfterS : fallbackS;
 }
 
 /**

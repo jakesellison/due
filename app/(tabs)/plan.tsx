@@ -24,6 +24,7 @@ import { hairlineBottom, hairlineTop } from '@/components/ui/Divider';
 import { TAB_BAR_INSET } from '@/components/GlassTabBar';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { display, fontSizes, radius, space, type Tokens } from '@/theme/tokens';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 /**
  * Plan is the runner's training blueprint: race context, the complete weekly
@@ -259,6 +260,7 @@ export default function PlanScreen() {
             <SymbolView name="chevron.right" size={12} tintColor={C.mute} resizeMode="scaleAspectFit" />
           </View>
         </Pressable>
+        <PoweredByStrava />
       </ScrollView>
     </PlanShell>
   );

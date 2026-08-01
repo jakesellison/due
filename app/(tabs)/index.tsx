@@ -38,6 +38,7 @@ import { eyebrowText } from '@/components/ui/Eyebrow';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { fontSizes, radius, space, type Tokens } from '@/theme/tokens';
 import { addDays, adherenceSummary } from '@/lib';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 /**
  * The Dash (home) in the dark+yellow system: a flat themed top bar (plan chip
@@ -500,6 +501,7 @@ export default function DashScreen() {
         blocks={blocks}
         contentContainerStyle={{ paddingBottom: TAB_BAR_INSET }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={C.mute} />}
+        footer={<PoweredByStrava />}
       />
       {contractJustMet && justBanked.banked && currentWeekGoal ? (
         <ContractMetMoment

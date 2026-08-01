@@ -60,7 +60,10 @@ export default async function handler(req: ApiRequest, res: ApiResponse): Promis
     const { handoff, handoffHash } = await mintHandoff(admin, mode);
     const state = signState(statePayload, handoffHash, stravaStateSecret);
     const redirectUri = `${appBaseUrl}/api/strava/callback`;
-    res.status(200).json({ authUrl: authorizeUrl(state, redirectUri), handoff });
+    // Write scope is an escalation an authenticated user asks for explicitly
+    // (Plan context reconnect); sign-in mode can never request it.
+    const write = mode === 'link' && (req.body as { write?: unknown } | undefined)?.write === true;
+    res.status(200).json({ authUrl: authorizeUrl(state, redirectUri, { write }), handoff });
   } catch (err) {
     console.error('strava/auth failed:', err);
     await captureError(err, { route: 'strava/auth' });

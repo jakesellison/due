@@ -31,12 +31,20 @@ describe('authorizeUrl', () => {
     expect(parsed.origin + parsed.pathname).toBe('https://www.strava.com/oauth/authorize');
     expect(parsed.searchParams.get('client_id')).toBe('123456');
     expect(parsed.searchParams.get('response_type')).toBe('code');
-    expect(parsed.searchParams.get('scope')).toBe('read,activity:read_all,activity:write');
+    // Scope minimization: the default grant is READ-ONLY — activity:write is
+    // never part of a plain connect.
+    expect(parsed.searchParams.get('scope')).toBe('read,activity:read_all');
     expect(parsed.searchParams.get('state')).toBe('user-abc-123');
     // redirect_uri round-trips through URLSearchParams (i.e. was encoded).
     expect(parsed.searchParams.get('redirect_uri')).toBe(redirectUri);
     // Raw query string must contain a percent-encoded redirect_uri.
     expect(url).toContain('redirect_uri=https%3A%2F%2Fmileage.app%2Fapi%2Fstrava%2Fcallback');
+  });
+
+  it('adds activity:write ONLY on an explicit write escalation', () => {
+    const redirectUri = 'https://mileage.app/api/strava/callback';
+    const url = authorizeUrl('user-abc-123', redirectUri, { write: true });
+    expect(new URL(url).searchParams.get('scope')).toBe('read,activity:read_all,activity:write');
   });
 });
 
@@ -81,5 +89,45 @@ describe('fetchStreams — transient failures must NOT be swallowed to null', ()
   it('propagates a network error (does not swallow to null)', async () => {
     global.fetch = (() => Promise.reject(new Error('network down'))) as typeof fetch;
     await expect(fetchStreams('tok', 1)).rejects.toThrow(/network down/);
+  });
+});
+
+describe('retryAfterSeconds — 429 back-off from the response itself', () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { retryAfterSeconds } = require('../strava') as typeof import('../strava');
+  const resp = (status: number, headers: Record<string, string> = {}) => ({
+    status,
+    headers: { get: (n: string) => headers[n.toLowerCase()] ?? null },
+  });
+
+  afterEach(() => jest.restoreAllMocks());
+
+  it('is undefined for non-429 responses', () => {
+    expect(retryAfterSeconds(resp(500))).toBeUndefined();
+    expect(retryAfterSeconds(resp(200))).toBeUndefined();
+  });
+
+  it('honors a standard Retry-After header first', () => {
+    expect(retryAfterSeconds(resp(429, { 'retry-after': '120' }))).toBe(120);
+  });
+
+  it('backs off to the next quarter-hour boundary when only the short window blew', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_000 * 900 * 1000 + 100_000); // 100s into a window
+    expect(
+      retryAfterSeconds(resp(429, { 'x-ratelimit-limit': '600,30000', 'x-ratelimit-usage': '601,900' })),
+    ).toBe(900 - 100 + 5);
+  });
+
+  it('backs off to the next UTC midnight when the DAILY budget blew but the short window did not', () => {
+    const nowS = 86_400 * 20_000 + 3_600; // 01:00 UTC
+    jest.spyOn(Date, 'now').mockReturnValue(nowS * 1000);
+    expect(
+      retryAfterSeconds(resp(429, { 'x-ratelimit-limit': '600,30000', 'x-ratelimit-usage': '10,30001' })),
+    ).toBe(86_400 - 3_600 + 5);
+  });
+
+  it('never crashes on a headerless 429 — falls back to the quarter-hour window', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_000 * 900 * 1000 + 100_000);
+    expect(retryAfterSeconds({ status: 429 })).toBe(900 - 100 + 5);
   });
 });

@@ -17,6 +17,7 @@ import {
   type StravaConnection,
 } from '../../src/server/ingest';
 import { fetchActivity, refreshAccessToken } from '../../src/server/strava';
+import { sendStravaDataDeletedPush } from '../../src/server/push';
 // From `stravaError` so the `instanceof` inside survives suites that mock
 // `../strava` wholesale.
 import { isStravaNotFound } from '../../src/server/stravaError';
@@ -206,6 +207,10 @@ export async function processEvent(event: StravaEvent): Promise<void> {
       }
       await deleteAllStravaActivities(admin, conn.user_id);
       await deactivateConnection(admin, conn.user_id);
+      // Written deletion confirmation (Strava API Policy). The user acted in
+      // Strava's settings, not in Due, so a push is the only channel. Must
+      // never fail the ack.
+      await sendStravaDataDeletedPush(admin, conn.user_id).catch(() => {});
     }
     return;
   }

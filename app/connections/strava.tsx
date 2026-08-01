@@ -161,7 +161,7 @@ export default function StravaConnectionScreen() {
     if (connecting) return false;
     setConnecting(true);
     try {
-      const result = await connectStrava();
+      const result = await connectStrava({ write: true });
       if (result !== 'connected') return false;
       const next = await refresh();
       return next?.writeAuthorized === true;
@@ -198,6 +198,12 @@ export default function StravaConnectionScreen() {
               if (userId) await clearInterruptedMode(userId);
               setBackfillStatus({ kind: 'idle' });
               closeScreen(router);
+              // Written confirmation of deletion — required by the Strava API
+              // Policy after a deauthorization/deletion request.
+              Alert.alert(
+                'Strava disconnected',
+                'Due’s access was revoked on Strava and all Strava-synced runs have been deleted from Due.',
+              );
             } catch {
               Alert.alert('Couldn’t disconnect Strava', 'Please try again.');
             } finally {
@@ -568,10 +574,11 @@ const makeStyles = (C: Tokens) =>
       alignItems: 'center',
       gap: space.lg,
     },
+    // Brand guidelines: never modify Strava artwork — the icon ships its own
+    // corner treatment, so no borderRadius of ours may clip it.
     identityIcon: {
       width: 56,
       height: 56,
-      borderRadius: radius.md,
     },
     identityBody: { flex: 1, minWidth: 0 },
     identityTitle: {

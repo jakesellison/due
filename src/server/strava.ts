@@ -84,20 +84,51 @@ function toToken(json: StravaTokenResponse): StravaToken {
   };
 }
 
-/** Build the Strava authorize URL the user is redirected to. PURE. */
-export function authorizeUrl(state: string, redirectUri: string): string {
+/** Build the Strava authorize URL the user is redirected to. PURE.
+ *
+ * Scope minimization (Strava API Policy): the default grant is read-only.
+ * `activity:write` is requested ONLY when the user is escalating to enable the
+ * opt-in description write-back ("Plan context") — the reconnect flow on the
+ * Strava connection screen. First connect never asks for write access. */
+export function authorizeUrl(state: string, redirectUri: string, opts: { write?: boolean } = {}): string {
   const { stravaClientId } = getEnv();
   const params = new URLSearchParams({
     client_id: stravaClientId,
     response_type: 'code',
     redirect_uri: redirectUri,
-    scope: 'read,activity:read_all,activity:write',
+    scope: opts.write ? 'read,activity:read_all,activity:write' : 'read,activity:read_all',
     state,
   });
   return `${AUTHORIZE_URL}?${params.toString()}`;
 }
 
 /** Exchange an authorization code for tokens. */
+/**
+ * Back-off for a 429, computed from the response itself instead of guessed.
+ * Strava's limiter runs on fixed quarter-hour windows plus a daily budget
+ * (headers `X-RateLimit-Limit` / `X-RateLimit-Usage`, each "shortTerm,daily").
+ * A standard `Retry-After` header wins when present; a blown daily budget with
+ * the short-term window still open backs off to the next UTC midnight; any
+ * other 429 backs off to the next quarter-hour boundary (+5s clock skew).
+ * Returns undefined for non-429 responses.
+ */
+export function retryAfterSeconds(res: { status: number; headers?: { get(name: string): string | null } }): number | undefined {
+  if (res.status !== 429) return undefined;
+  // Error-path helper: never let a missing/minimal headers object turn a 429
+  // into a different crash.
+  const header = (name: string) => res.headers?.get?.(name) ?? null;
+  const ra = Number(header('retry-after'));
+  if (Number.isFinite(ra) && ra > 0) return Math.ceil(ra);
+  const pair = (h: string) => (header(h) ?? '').split(',').map((s) => Number(s.trim()));
+  const [shortLimit, dayLimit] = pair('x-ratelimit-limit');
+  const [shortUse, dayUse] = pair('x-ratelimit-usage');
+  const nowS = Math.floor(Date.now() / 1000);
+  const shortBlown = Number.isFinite(shortLimit) && Number.isFinite(shortUse) && shortUse! >= shortLimit!;
+  const dayBlown = Number.isFinite(dayLimit) && Number.isFinite(dayUse) && dayUse! >= dayLimit!;
+  if (dayBlown && !shortBlown) return 86_400 - (nowS % 86_400) + 5;
+  return 900 - (nowS % 900) + 5;
+}
+
 export async function exchangeCodeForToken(code: string): Promise<StravaToken> {
   const { stravaClientId, stravaClientSecret } = getEnv();
   const res = await fetch(OAUTH_TOKEN_URL, {
@@ -115,6 +146,7 @@ export async function exchangeCodeForToken(code: string): Promise<StravaToken> {
       'token-exchange',
       res.status,
       `Strava token exchange failed: ${res.status} ${await res.text()}`,
+      retryAfterSeconds(res),
     );
   }
   return toToken((await res.json()) as StravaTokenResponse);
@@ -138,6 +170,7 @@ export async function refreshAccessToken(refreshToken: string): Promise<StravaTo
       'token-refresh',
       res.status,
       `Strava token refresh failed: ${res.status} ${await res.text()}`,
+      retryAfterSeconds(res),
     );
   }
   return toToken((await res.json()) as StravaTokenResponse);
@@ -158,6 +191,7 @@ export async function fetchActivity(
       'activity',
       res.status,
       `Strava fetchActivity failed: ${res.status} ${await res.text()}`,
+      retryAfterSeconds(res),
     );
   }
   return (await res.json()) as Record<string, unknown>;
@@ -189,7 +223,7 @@ export async function fetchStreams(
   // non-429 4xx → terminal, 5xx/network → retry unstamped.
   if (res.status === 404) return null;
   if (!res.ok) {
-    throw new StravaHttpError('streams', res.status, `Strava fetchStreams failed: ${res.status}`);
+    throw new StravaHttpError('streams', res.status, `Strava fetchStreams failed: ${res.status}`, retryAfterSeconds(res));
   }
   return (await res.json()) as RawStreams;
 }

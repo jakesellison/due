@@ -20,6 +20,7 @@ import { hairlineBottom } from '@/components/ui/Divider';
 import { statValueText } from '@/components/ui/Stat';
 import { SheetHeader } from '@/components/SheetHeader';
 import { ErrorState } from '@/components/ErrorState';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 export default function PlanHistoryScreen() {
   const C = useTheme();
@@ -77,6 +78,7 @@ export default function PlanHistoryScreen() {
             ))}
           </View>
         )}
+        <PoweredByStrava />
         <View style={{ height: 40 }} />
       </ScrollView>
     </SafeAreaView>

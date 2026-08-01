@@ -20,6 +20,7 @@ import { CalendarMonth } from '@/components/dash/CalendarMonth';
 import { SheetHeader } from '@/components/SheetHeader';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { fontSizes, radius, space, type Tokens } from '@/theme/tokens';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -179,6 +180,7 @@ export default function WeekCalendarScreen() {
           onViewWeek={setViewWeek}
         />
       </View>
+      <PoweredByStrava compact />
     </SafeAreaView>
   );
 }

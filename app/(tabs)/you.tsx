@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Alert,
   Image,
+  Linking,
   Pressable,
   RefreshControl,
   ScrollView,
@@ -46,6 +47,7 @@ import {
 } from '@/app-lib/preferences';
 import { useTheme, useThemePreference, useThemedStyles, type ThemePreference } from '@/theme/ThemeProvider';
 import { fontSizes, radius, space, typeRole, type Tokens } from '@/theme/tokens';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -237,6 +239,7 @@ export default function SettingsScreen() {
             onDeleteAccount={onDeleteAccount}
           />
         </View>
+        <PoweredByStrava />
       </ScrollView>
     </Screen>
   );
@@ -387,6 +390,28 @@ function AccountRows({
           <Text style={styles.tertiaryDanger}>{deleting ? 'Deleting…' : 'Delete'}</Text>
         </Pressable>
       </View>
+      <Pressable
+        accessibilityRole="link"
+        accessibilityLabel="Privacy policy"
+        onPress={() => { Linking.openURL('https://due.run/privacy').catch(() => {}); }}
+        style={({ pressed }) => [styles.accountRow, styles.rowDivider, pressed && styles.planRowPressed]}
+      >
+        <View style={styles.accountBody}>
+          <Text style={styles.staticLabel}>Privacy policy</Text>
+          <Text style={styles.rowStatus} numberOfLines={1}>due.run/privacy</Text>
+        </View>
+      </Pressable>
+      <Pressable
+        accessibilityRole="link"
+        accessibilityLabel="Support"
+        onPress={() => { Linking.openURL('mailto:hello@due.run').catch(() => {}); }}
+        style={({ pressed }) => [styles.accountRow, styles.rowDivider, pressed && styles.planRowPressed]}
+      >
+        <View style={styles.accountBody}>
+          <Text style={styles.staticLabel}>Support</Text>
+          <Text style={styles.rowStatus} numberOfLines={1}>hello@due.run</Text>
+        </View>
+      </Pressable>
     </View>
   );
 }
@@ -784,10 +809,10 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingVertical: space.md,
   },
+  // Unmodified brand artwork — the Strava icon carries its own corners.
   connectionIcon: {
     width: 40,
     height: 40,
-    borderRadius: radius.sm,
   },
   connectionWarning: { color: C.warningText },
   rowStatus: { fontSize: fontSizes.metadata, fontWeight: '600', color: C.mute, marginTop: space.xxs },

@@ -54,6 +54,7 @@ import { statValueText } from '@/components/ui/Stat';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { display, fontSizes, radius, space, usesAccessibilityTextLayout, type Tokens } from '@/theme/tokens';
 import { runnerRacePaces } from '@/lib/kpi/targetPace';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 const DOW = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 const DOW_FULL = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -867,6 +868,7 @@ export default function PlannerScreen() {
             <View ref={poolRowsRef} style={styles.reflowList}>{renderPoolRows()}</View>
           )}
         </View>
+        <PoweredByStrava />
         <View style={{ height: 24 }} />
       </ScrollView>
 

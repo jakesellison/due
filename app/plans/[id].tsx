@@ -31,6 +31,7 @@ import { RoundIconButton } from '@/components/RoundIconButton';
 import { SheetHeader } from '@/components/SheetHeader';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
 import { fontSizes, space, type Tokens } from '@/theme/tokens';
+import { PoweredByStrava } from '@/components/StravaAttribution';
 
 /**
  * Read-only plan detail — "what was my Boston block?". Renders a NON-ACTIVE
@@ -147,6 +148,7 @@ export default function PlanDetailScreen() {
               />
             ) : null}
             {draft ? <PlanOutlineView draft={draft} showProfile={false} /> : null}
+            <PoweredByStrava />
           </ScrollView>
         )}
       </SafeAreaView>

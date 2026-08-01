@@ -3,8 +3,8 @@ import { methodAllowed, requireUser } from '../../src/server/apiAuth';
 import { rateLimit } from '../../src/server/rateLimit';
 import { createAdminClient } from '../../src/server/supabaseAdmin';
 import { captureError } from '../../src/server/report';
-import { fetchActivity, fetchStreams } from '../../src/server/strava';
-import { isStravaRateLimited } from '../../src/server/stravaError';
+import { fetchActivity, fetchStreams, retryAfterSeconds } from '../../src/server/strava';
+import { isStravaRateLimited, stravaRetryAfterS } from '../../src/server/stravaError';
 import { fetchTempC } from '../../src/server/weather';
 import { fullResStreams, computeStreamSummary, computeStreamSummaryFromStored, routeFromLatLng, type ActivityStreams, type QualityFloorInputs } from '../../src/server/streams';
 import type { StravaLap as StreamLap } from '../../src/lib/run/analysis';
@@ -57,13 +57,16 @@ import {
  *    streams + weather), return progress and the next offset until none remain.
  *    See `ENRICH_SELECT_FILTER` (src/server/backfill.ts) for the exact predicate.
  *
- * On a Strava 429 anywhere, returns { rateLimited: true, retryAfterS: 900 } so
- * the client stops gracefully and can resume later.
+ * On a Strava 429 anywhere, returns { rateLimited: true, retryAfterS } — the
+ * back-off computed from the 429's own rate-limit headers (see
+ * `retryAfterSeconds`), so the client resumes when Strava actually resets.
  */
 const STRAVA_API = 'https://www.strava.com/api/v3';
 const ENRICH_WINDOW = 30;
 
-class RateLimited extends Error {}
+class RateLimited extends Error {
+  constructor(readonly retryAfterS: number) { super('strava rate limited'); }
+}
 
 export default async function handler(req: ApiRequest, res: ApiResponse): Promise<void> {
   if (!methodAllowed(req, res, ['POST'])) return;
@@ -100,7 +103,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse): Promis
     }
   } catch (err) {
     if (err instanceof RateLimited) {
-      res.status(200).json({ phase, rateLimited: true, retryAfterS: 900 });
+      res.status(200).json({ phase, rateLimited: true, retryAfterS: err.retryAfterS });
       return;
     }
     console.error('strava/backfill failed:', err);
@@ -147,7 +150,7 @@ async function runSummaries(
     `${STRAVA_API}/athlete/activities?per_page=${SUMMARY_PER_PAGE}` +
     `&page=${page}&after=${after}`;
   const resp = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
-  if (resp.status === 429) throw new RateLimited();
+  if (resp.status === 429) throw new RateLimited(retryAfterSeconds(resp) ?? 900);
   if (!resp.ok) {
     throw new Error(`athlete/activities failed: ${resp.status} ${await resp.text()}`);
   }
@@ -349,7 +352,7 @@ async function enrichOne(
   } catch (err) {
     // A 429 surfaces as a StravaHttpError from fetchActivity; classify off the
     // structured status so the client backs off.
-    if (isStravaRateLimited(err)) throw new RateLimited();
+    if (isStravaRateLimited(err)) throw new RateLimited(stravaRetryAfterS(err));
     throw err;
   }
 
@@ -382,7 +385,7 @@ async function enrichOne(
     // streamless (the predicate never re-picks a stamped row). Other
     // transient failures upsert unstamped so a later pass retries; only a
     // permanent non-429 4xx terminates.
-    if (isStravaRateLimited(err)) throw new RateLimited();
+    if (isStravaRateLimited(err)) throw new RateLimited(stravaRetryAfterS(err));
     streamsSettled = isPermanentStreamsFailure(err);
   }
 

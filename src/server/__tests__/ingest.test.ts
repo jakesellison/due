@@ -301,7 +301,15 @@ describe('ensureFreshAccessToken', () => {
       /token refresh failed: 400/,
     );
 
-    expect(builder.update).toHaveBeenCalledWith({ status: 'revoked' });
+    // Deactivation also DELETES the credentials: revoked tokens and the
+    // athlete id are Strava Data the API Policy requires us to drop.
+    expect(builder.update).toHaveBeenCalledWith({
+      status: 'revoked',
+      access_token: null,
+      refresh_token: null,
+      expires_at: null,
+      provider_athlete_id: null,
+    });
     expect(eqFilters.user_id).toBe('u1');
   });
 
