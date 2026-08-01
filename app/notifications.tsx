@@ -211,7 +211,7 @@ const makeStyles = (C: Tokens) =>
       paddingVertical: space.md,
     },
     preferenceBody: { flex: 1, minWidth: 0 },
-    rowTitle: { fontSize: fontSizes.sectionTitle, lineHeight: 21, fontWeight: '700', color: C.ink },
+    rowTitle: { fontSize: fontSizes.body, lineHeight: 20, fontWeight: '700', color: C.ink },
     rowDetail: {
       ...typeRole.metadata,
       color: C.mute,

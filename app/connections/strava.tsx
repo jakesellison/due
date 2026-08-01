@@ -657,8 +657,8 @@ const makeStyles = (C: Tokens) =>
     },
     rowBody: { flex: 1, minWidth: 0 },
     rowTitle: {
-      fontSize: fontSizes.sectionTitle,
-      lineHeight: 21,
+      fontSize: fontSizes.body,
+      lineHeight: 20,
       fontWeight: '700',
       color: C.ink,
     },
@@ -706,8 +706,8 @@ const makeStyles = (C: Tokens) =>
       paddingVertical: space.md,
     },
     preferenceTitle: {
-      fontSize: fontSizes.sectionTitle,
-      lineHeight: 21,
+      fontSize: fontSizes.body,
+      lineHeight: 20,
       fontWeight: '700',
       color: C.ink,
       flexShrink: 1,
