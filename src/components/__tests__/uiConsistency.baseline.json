@@ -5,6 +5,9 @@
   "app/(tabs)/index.tsx": {
     "pillRadius": 1
   },
+  "app/(tabs)/plan.tsx": {
+    "pillRadius": 1
+  },
   "app/(tabs)/you.tsx": {
     "hairline": 1,
     "cardFill": 1

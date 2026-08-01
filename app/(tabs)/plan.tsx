@@ -329,7 +329,7 @@ const makeStyles = (C: Tokens) =>
     headerButton: {
       width: 44,
       height: 44,
-      borderRadius: 22,
+      borderRadius: radius.pill,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -373,7 +373,7 @@ const makeStyles = (C: Tokens) =>
 
     emptyTitle: {
       color: C.ink,
-      fontSize: 20,
+      fontSize: fontSizes.cardTitle,
       fontWeight: '800',
       textAlign: 'center',
     },

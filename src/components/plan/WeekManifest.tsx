@@ -328,7 +328,7 @@ const makeStyles = (C: Tokens) =>
     dateCol: { width: 48, paddingTop: space.md, paddingRight: space.sm },
     dateColAccessible: { width: '100%', minHeight: 48, flexDirection: 'row', alignItems: 'baseline', gap: space.sm, paddingHorizontal: space.lg, paddingBottom: space.sm },
     dow: eyebrowText(C, 'micro'),
-    dayNum: { marginTop: 1, color: C.ink, fontFamily: display, fontSize: 20, lineHeight: 22, fontVariant: ['tabular-nums'] },
+    dayNum: { marginTop: 1, color: C.ink, fontFamily: display, fontSize: fontSizes.numeralSm, lineHeight: 22, fontVariant: ['tabular-nums'] },
     dateToday: { color: C.yellowText },
     todayLabel: { ...eyebrowText(C, 'micro'), color: C.yellowText, marginTop: space.xxs },
     todayLabelAccessible: { marginTop: 0 },
@@ -358,7 +358,7 @@ const makeStyles = (C: Tokens) =>
     unplannedMeta: { marginTop: space.xxs, color: C.mute, fontSize: fontSizes.micro, fontWeight: '700' },
     distance: { minWidth: 58, alignItems: 'flex-end' },
     distanceAccessible: { width: '100%', minWidth: 0, marginLeft: 0, alignItems: 'flex-start' },
-    distanceValue: { ...statValueText(C, 'label', 'system'), fontWeight: '900' },
+    distanceValue: { ...statValueText(C, 'label', 'system'), fontWeight: '800' },
     distanceDim: { color: C.mute },
     pressed: { opacity: 0.58 },
   });

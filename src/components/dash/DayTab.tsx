@@ -255,7 +255,7 @@ const makeStyles = (C: Tokens) =>
       height: 6,
       marginTop: space.xs,
       flexDirection: 'row',
-      gap: 3,
+      gap: space.nudge,
       alignItems: 'center',
       justifyContent: 'center',
     },

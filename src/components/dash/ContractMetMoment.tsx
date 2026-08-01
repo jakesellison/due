@@ -389,7 +389,7 @@ const makeStyles = (C: Tokens) =>
     stampWrap: { height: 97, alignItems: 'center', justifyContent: 'center', marginVertical: space.m },
     stampScale: { transform: [{ scale: 2.2 }] },
     valueRow: { flexDirection: 'row', alignItems: 'baseline' },
-    value: { color: C.ink, fontSize: 40, fontFamily: display, letterSpacing: -1 },
+    value: { color: C.ink, fontSize: fontSizes.numeralXl, fontFamily: display, letterSpacing: -1 },
     of: { color: C.mute, fontSize: fontSizes.body, fontWeight: '700' },
     // Supporting contracts. `dataRegular` (not the bold `data`) on purpose:
     // these are secondary to the mileage hero above and bold numerals here

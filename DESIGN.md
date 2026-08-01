@@ -52,6 +52,15 @@ in Phase 4; this file starts with the laws.
 - Display face (Space Grotesk 700) for hero numerals + titles only; data face
   (Space Mono) for contract numerals; system face for everything else.
   `[CHECK-P3]` — typeRole carries the face; a forgotten fontFamily cannot drift.
+- **The title ladder**: metadata 12 · label 13/14 · body 15 · sectionTitle 18 ·
+  cardTitle 20 · sheetTitle 22 · pageTitle 29. **The numeral register** (display
+  numerals — stat values, gauges, hero figures — a different intent than titles
+  even where sizes coincide): numeralSm 20 · numeralMd 24 · numeralLg 34 ·
+  numeralXl 40; hero one-offs above 40 stay bespoke. **The weight ladder**:
+  500 soft · 600 · 700 · 800 top. 900 is banned — the display face loads only
+  700, so 900 synthesizes a fake bold. Micro-spacing: `space.nudge` (3) is the
+  named optical nudge between xxs and xs. `[PROSE]` — which register a piece of
+  text belongs to is a judgment call; the sizes themselves are tokens.
 
 ## Copy law
 

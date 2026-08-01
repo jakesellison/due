@@ -160,7 +160,7 @@ const makeStyles = (C: Tokens) =>
     grabber: { alignSelf: 'center', width: 36, height: 5, borderRadius: 3, backgroundColor: C.line, marginTop: space.m, marginBottom: space.s },
     head: { paddingHorizontal: 0 },
 
-    segment: { flexDirection: 'row', backgroundColor: C.fill, borderRadius: radius.sm, padding: 3, marginTop: space.m },
+    segment: { flexDirection: 'row', backgroundColor: C.fill, borderRadius: radius.sm, padding: space.nudge, marginTop: space.m },
     segBtn: { flex: 1, height: 40, borderRadius: radius.sm, alignItems: 'center', justifyContent: 'center' },
     segBtnOn: { backgroundColor: C.card, borderWidth: StyleSheet.hairlineWidth, borderColor: C.line },
     segText: { fontSize: fontSizes.labelLg, fontWeight: '800', color: C.mute },

@@ -309,7 +309,7 @@ const makeStyles = (C: Tokens) =>
     sheetHeader: { paddingTop: space.lg, backgroundColor: C.bg },
     centered: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.xl, backgroundColor: C.bg },
     editAction: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: space.s, paddingHorizontal: space.sm, borderRadius: radius.md },
-    editActionText: { color: C.yellowText, fontSize: fontSizes.label, fontWeight: '900' },
+    editActionText: { color: C.yellowText, fontSize: fontSizes.label, fontWeight: '800' },
     pressed: { opacity: 0.58 },
     contractBand: {
       minHeight: 98,
@@ -326,7 +326,7 @@ const makeStyles = (C: Tokens) =>
     allocationNotice: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingHorizontal: space.lg, paddingVertical: space.sm, ...hairlineBottom(C), backgroundColor: C.fill },
     allocationNoticeDot: { width: 7, height: 7, borderRadius: radius.pill, backgroundColor: C.warningText },
     allocationNoticeText: { flex: 1, minWidth: 0, color: C.warningText, fontSize: fontSizes.labelSm, lineHeight: 16, fontWeight: '700' },
-    allocationNoticeLead: { fontWeight: '900' },
+    allocationNoticeLead: { fontWeight: '800' },
     // The contract band's keys keep their heavier weight and wider tracking than
     // the canonical eyebrow: this is the sheet's masthead, and it is set against
     // a 32pt display numeral rather than body copy.
@@ -336,7 +336,7 @@ const makeStyles = (C: Tokens) =>
     contractUnit: { ...eyebrowText(C, 'labelSm'), },
     revised: { ...statValueText(C, 'micro', 'system'), marginTop: space.xxs, color: C.faint, fontWeight: '700' },
     contractState: { alignItems: 'flex-end' },
-    stateValue: { color: C.ink, fontFamily: display, fontSize: 20, lineHeight: 22, fontVariant: ['tabular-nums'] },
+    stateValue: { color: C.ink, fontFamily: display, fontSize: fontSizes.numeralSm, lineHeight: 22, fontVariant: ['tabular-nums'] },
     stateLabel: { ...eyebrowText(C, 'micro'), marginTop: space.xxs },
     stateDetail: { ...statValueText(C, 'micro', 'system'), marginTop: space.xxs, color: C.faint, fontWeight: '700' },
     manifestHead: {
@@ -349,12 +349,12 @@ const makeStyles = (C: Tokens) =>
       paddingTop: space.lg,
       paddingBottom: space.md,
     },
-    manifestTitle: { color: C.ink, fontSize: fontSizes.sectionTitle, fontWeight: '900', letterSpacing: -0.25 },
+    manifestTitle: { color: C.ink, fontSize: fontSizes.sectionTitle, fontWeight: '800', letterSpacing: -0.25 },
     manifestLegend: { color: C.faint, fontSize: fontSizes.micro, fontWeight: '800', paddingBottom: 1 },
     empty: { minHeight: 116, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, ...hairlineTop(C), ...hairlineBottom(C) },
     emptyCopy: { flex: 1 },
     emptyTitle: { color: C.ink, fontSize: fontSizes.labelLg, fontWeight: '800' },
-    emptyBody: { marginTop: space.xs, color: C.mute, fontSize: fontSizes.metadata, lineHeight: 17, fontWeight: '600' },
+    emptyBody: { marginTop: space.xs, color: C.mute, fontSize: fontSizes.metadata, lineHeight: 16, fontWeight: '600' },
     errorTitle: { color: C.ink, fontSize: fontSizes.sectionTitle, fontWeight: '800', marginBottom: space.sm },
     errorBody: { color: C.mute, fontSize: fontSizes.label, lineHeight: 20, textAlign: 'center' },
   });

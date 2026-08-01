@@ -727,7 +727,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   },
   identityBody: { flex: 1, minWidth: 0 },
   identityTitle: {
-    fontSize: 20,
+    fontSize: fontSizes.cardTitle,
     fontWeight: '800',
     color: C.ink,
     letterSpacing: -0.3,
@@ -736,7 +736,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
     ...statValueText(C, 'metadata', 'system'),
     fontWeight: '600',
     color: C.mute,
-    marginTop: 3,
+    marginTop: space.nudge,
   },
 
   staticLabel: { flex: 1, minWidth: 0, fontSize: fontSizes.body, fontWeight: '700', color: C.ink },

@@ -92,7 +92,7 @@ const makeStyles = (C: Tokens) =>
     error: { minHeight: 320, alignItems: 'center', justifyContent: 'center' },
     empty: { alignItems: 'center', gap: space.md, paddingTop: 80 },
     emptyTxt: { color: C.mute, fontSize: fontSizes.labelLg, fontWeight: '600' },
-    emptyBody: { maxWidth: 280, color: C.faint, fontSize: fontSizes.metadata, lineHeight: 18, fontWeight: '600', textAlign: 'center' },
+    emptyBody: { maxWidth: 280, color: C.faint, fontSize: fontSizes.metadata, lineHeight: 16, fontWeight: '600', textAlign: 'center' },
     ledger: { backgroundColor: C.card, borderColor: C.line, borderWidth: StyleSheet.hairlineWidth, borderRadius: radius.md, overflow: 'hidden' },
     event: { paddingHorizontal: space.lg, paddingVertical: space.lg, ...hairlineBottom(C) },
     eventLast: { borderBottomWidth: 0 },

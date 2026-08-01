@@ -180,18 +180,18 @@ const makeStyles = (C: Tokens) =>
     titleRowAccessible: { flexWrap: 'wrap', alignItems: 'flex-start' },
     title: { color: C.ink, fontFamily: display, fontSize: fontSizes.sectionTitle, letterSpacing: -0.2, flexShrink: 1 },
     seal: { color: C.z2 },
-    typeRow: { flexDirection: 'row', alignItems: 'center', gap: space.s, marginTop: 3 },
+    typeRow: { flexDirection: 'row', alignItems: 'center', gap: space.s, marginTop: space.nudge },
     typeRowAccessible: { flexDirection: 'column', alignItems: 'flex-start' },
     // The colour is the workout's own accent, applied at the call site.
     type: { ...eyebrowText(C, 'labelSm'), flexShrink: 1 },
     // The "Missed · Tue" origin as a compact chip so it never adds a row line.
-    noteChip: { backgroundColor: C.fill, borderRadius: 5, paddingHorizontal: space.s, paddingVertical: 1.5 },
+    noteChip: { backgroundColor: C.fill, borderRadius: radius.xs, paddingHorizontal: space.s, paddingVertical: 1.5 },
     noteChipTxt: { color: C.mute, fontSize: fontSizes.micro, fontWeight: '700' },
     right: { alignItems: 'flex-end' },
     rightAccessible: { alignItems: 'flex-start' },
-    mi: { color: C.ink, fontSize: 22, fontFamily: display, letterSpacing: -0.4 },
+    mi: { color: C.ink, fontSize: fontSizes.sheetTitle, fontFamily: display, letterSpacing: -0.4 },
     miU: { color: C.mute, fontSize: fontSizes.metadata, fontWeight: '700' },
-    secRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: 3 },
+    secRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.nudge },
     est: { ...statValueText(C, 'metadata', 'system'), color: C.mute, fontWeight: '700' },
     ran: { color: C.positiveText, fontSize: fontSizes.labelSm },
   });

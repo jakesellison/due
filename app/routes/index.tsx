@@ -163,7 +163,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   rowFirst: { borderTopWidth: 0 },
   rowPressed: { backgroundColor: C.fill },
   rowCopy: { flex: 1, minWidth: 0 },
-  routeName: { color: C.ink, fontSize: fontSizes.sectionTitle, lineHeight: 20, fontWeight: '700', letterSpacing: -0.2 },
+  routeName: { color: C.ink, fontSize: fontSizes.sectionTitle, lineHeight: 23, fontWeight: '700', letterSpacing: -0.2 },
   routeDistance: { color: C.mute, fontFamily: dataRegular, fontSize: fontSizes.metadata, marginTop: space.s },
   state: { flex: 1, minHeight: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: space.xl, paddingBottom: 72 },
   emptyIcon: { marginBottom: space.lg },

@@ -791,7 +791,7 @@ const makeStyles = (C: Tokens) =>
     contractValue: {
       color: C.positiveText,
       fontFamily: data,
-      fontSize: 19,
+      fontSize: fontSizes.numeralSm,
       lineHeight: 24,
       fontVariant: ['tabular-nums'],
     },
@@ -929,7 +929,7 @@ const makeStyles = (C: Tokens) =>
       fontWeight: '700',
       textAlign: 'center',
     },
-    phaseLabelActive: { color: C.ink, fontWeight: '900' },
+    phaseLabelActive: { color: C.ink, fontWeight: '800' },
     supporting: {
       ...hairlineTop(C),
       flexDirection: 'row',

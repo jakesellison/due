@@ -87,10 +87,10 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
     minWidth: 0,
     color: C.ink,
     fontFamily: display,
-    fontSize: 21,
+    fontSize: fontSizes.cardTitle,
     letterSpacing: -0.4,
   },
-  titleAccessible: { fontSize: 21 },
+  titleAccessible: { fontSize: fontSizes.cardTitle },
   goalTime: {
     ...statValueText(C, 'labelSm', 'system'),
     color: C.mute,

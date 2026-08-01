@@ -203,7 +203,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   },
 
   headerBlock: { paddingHorizontal: space.xxs, gap: space.s },
-  name: { fontSize: 20, fontWeight: '800', color: C.ink, letterSpacing: -0.6 },
+  name: { fontSize: fontSizes.cardTitle, fontWeight: '800', color: C.ink, letterSpacing: -0.6 },
   meta: { ...statValueText(C, 'body', 'system'), color: C.mute },
 
   card: {
@@ -242,7 +242,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   actionLabel: { fontSize: fontSizes.body, fontWeight: '700' },
 
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.xl, gap: space.s },
-  errorTitle: { fontSize: 20, fontWeight: '700', color: C.ink },
+  errorTitle: { fontSize: fontSizes.cardTitle, fontWeight: '700', color: C.ink },
   errorBody: { fontSize: fontSizes.body, color: C.mute, textAlign: 'center' },
 
 });

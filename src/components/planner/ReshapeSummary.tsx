@@ -7,7 +7,7 @@ import { hairlineBottom, hairlineTop } from '@/components/ui/Divider';
 import { eyebrowText } from '@/components/ui/Eyebrow';
 import { statValueText } from '@/components/ui/Stat';
 import { useTheme, useThemedStyles } from '@/theme/ThemeProvider';
-import { display, radius, space, type Tokens } from '@/theme/tokens';
+import { display, fontSizes, radius, space, type Tokens } from '@/theme/tokens';
 
 const TEXT_SCALE = 1.35;
 const ONE_MILE = 1609.344;
@@ -141,7 +141,7 @@ const makeStyles = (C: Tokens) =>
     top: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: space.lg },
     topAccessible: { flexDirection: 'column', alignItems: 'flex-start', gap: space.sm },
     valueRow: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'baseline', gap: space.sm },
-    value: { color: C.ink, fontFamily: display, fontSize: 34, lineHeight: 39, letterSpacing: -0.9, fontVariant: ['tabular-nums'] },
+    value: { color: C.ink, fontFamily: display, fontSize: fontSizes.numeralLg, lineHeight: 39, letterSpacing: -0.9, fontVariant: ['tabular-nums'] },
     // The two keys keep their own weight/tracking on top of the eyebrow: this
     // block is the fixed reference above the workbench, and its labels were
     // tuned to sit under a 34pt projection without competing with it.

@@ -467,7 +467,7 @@ const makeStyles = (C: Tokens) =>
     scroll: { paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.xl * 2 },
 
     emptyLead: { paddingTop: space.lg },
-    emptyTitle: { color: C.ink, fontFamily: display, fontSize: 27, letterSpacing: -0.6 },
+    emptyTitle: { color: C.ink, fontFamily: display, fontSize: fontSizes.pageTitle, letterSpacing: -0.6 },
     emptyBody: { marginTop: space.sm, maxWidth: 310, color: C.mute, fontSize: fontSizes.labelLg, fontWeight: '600', lineHeight: 20 },
 
     currentCard: {
@@ -494,7 +494,7 @@ const makeStyles = (C: Tokens) =>
     currentLabel: { color: C.ink, fontFamily: display, fontSize: fontSizes.body, letterSpacing: -0.15 },
     currentDetail: { ...statValueText(C, 'micro'), flexShrink: 1, color: C.mute, lineHeight: 15, textAlign: 'right' },
     currentBody: { padding: space.lg },
-    currentTitle: { color: C.ink, fontFamily: display, fontSize: 24, lineHeight: 30, letterSpacing: -0.45 },
+    currentTitle: { color: C.ink, fontFamily: display, fontSize: fontSizes.sheetTitle, lineHeight: 30, letterSpacing: -0.45 },
     currentContext: { ...statValueText(C, 'labelSm', 'system'), marginTop: space.xs, color: C.mute, lineHeight: 16, fontWeight: '700' },
     currentMetrics: { marginTop: space.lg + 2, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: space.lg },
     currentMetricsAccessible: { flexDirection: 'column', alignItems: 'stretch' },
@@ -511,7 +511,7 @@ const makeStyles = (C: Tokens) =>
     section: { marginTop: space.xl + space.xs, marginBottom: 0 },
     heading: { color: C.ink, fontFamily: display, fontSize: fontSizes.body, letterSpacing: -0.15 },
     headingRow: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: space.md },
-    headingSub: { marginTop: space.s, marginBottom: space.md, color: C.mute, fontSize: fontSizes.metadata, fontWeight: '600', lineHeight: 17 },
+    headingSub: { marginTop: space.s, marginBottom: space.md, color: C.mute, fontSize: fontSizes.metadata, fontWeight: '600', lineHeight: 16 },
     headingMeta: { ...statValueText(C, 'micro'), color: C.mute, lineHeight: 15 },
     storefrontBleed: { marginHorizontal: -space.lg },
     storefrontShelf: { paddingHorizontal: space.lg, paddingBottom: space.xs, gap: space.md },
@@ -524,7 +524,7 @@ const makeStyles = (C: Tokens) =>
     },
     storefrontBody: { minHeight: 64, paddingHorizontal: space.lg, paddingVertical: space.sm, flexDirection: 'row', alignItems: 'center', gap: space.md },
     storefrontCopy: { flex: 1, minWidth: 0 },
-    storefrontTitle: { color: C.ink, fontFamily: display, fontSize: 20, lineHeight: 25, letterSpacing: -0.3 },
+    storefrontTitle: { color: C.ink, fontFamily: display, fontSize: fontSizes.cardTitle, lineHeight: 25, letterSpacing: -0.3 },
     storefrontContext: { ...statValueText(C, 'metadata', 'system'), marginTop: space.xxs, color: C.mute, lineHeight: 16, fontWeight: '600' },
 
     importCard: {
@@ -537,8 +537,8 @@ const makeStyles = (C: Tokens) =>
     },
     importCopyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, paddingVertical: space.sm },
     importBody: { flex: 1, minWidth: 0 },
-    importTitle: { color: C.ink, fontFamily: display, fontSize: 20, lineHeight: 25, letterSpacing: -0.35 },
-    importMeta: { marginTop: space.xs, color: C.mute, fontSize: fontSizes.metadata, lineHeight: 17, fontWeight: '600' },
+    importTitle: { color: C.ink, fontFamily: display, fontSize: fontSizes.cardTitle, lineHeight: 25, letterSpacing: -0.35 },
+    importMeta: { marginTop: space.xs, color: C.mute, fontSize: fontSizes.metadata, lineHeight: 16, fontWeight: '600' },
     byopSection: { marginTop: space.xl + space.xs },
     savedSection: { marginTop: space.xl + space.xs },
     savedHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: space.md },
@@ -549,7 +549,7 @@ const makeStyles = (C: Tokens) =>
     savedMainAccessible: { flexDirection: 'column', alignItems: 'flex-start', gap: space.s, paddingVertical: space.md },
     savedCopy: { flex: 1, minWidth: 0 },
     savedTitle: { color: C.ink, fontSize: fontSizes.labelLg, lineHeight: 19, fontWeight: '800', letterSpacing: -0.2 },
-    savedMeta: { ...statValueText(C, 'labelSm', 'system'), marginTop: 3, color: C.mute, lineHeight: 16, fontWeight: '700' },
+    savedMeta: { ...statValueText(C, 'labelSm', 'system'), marginTop: space.nudge, color: C.mute, lineHeight: 16, fontWeight: '700' },
     // The ledger's right-hand readout is the row's quiet key, not its subject, so
     // it keeps `C.mute` over the factory's `C.ink`.
     savedMileage: { ...statValueText(C, 'sm'), flexShrink: 0, color: C.mute, lineHeight: 17 },

@@ -95,7 +95,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
     backgroundColor: C.bg,
   },
   errorTitle: {
-    fontSize: 20,
+    fontSize: fontSizes.cardTitle,
     fontWeight: '700',
     color: C.ink,
     marginBottom: space.sm,

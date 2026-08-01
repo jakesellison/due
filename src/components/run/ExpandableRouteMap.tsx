@@ -5,7 +5,7 @@ import { SymbolView } from 'expo-symbols';
 
 import type { LatLng } from '@/lib';
 import { useTheme } from '@/theme/ThemeProvider';
-import { space } from '@/theme/tokens';
+import { radius, space } from '@/theme/tokens';
 import { CloseButton } from '@/components/CloseButton';
 import { OverlayNav } from '@/components/OverlayNav';
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: radius.lg,
     backgroundColor: 'rgba(11,14,18,0.5)',
     borderColor: 'rgba(255,255,255,0.14)',
     borderWidth: 1,

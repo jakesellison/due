@@ -331,7 +331,7 @@ const makeStyles = (C: Tokens) =>
     featureTitle: {
       color: C.ink,
       fontFamily: display,
-      fontSize: 24,
+      fontSize: fontSizes.sheetTitle,
       lineHeight: 30,
       letterSpacing: -0.45,
     },
@@ -364,7 +364,7 @@ const makeStyles = (C: Tokens) =>
     totalValue: {
       color: C.ink,
       fontFamily: dataRegular,
-      fontSize: 24,
+      fontSize: fontSizes.numeralMd,
       lineHeight: 29,
       fontVariant: ['tabular-nums'],
     },
@@ -398,7 +398,7 @@ const makeStyles = (C: Tokens) =>
       ...statValueText(C, 'label', 'dataRegular'),
       lineHeight: 18,
     },
-    metricValueFeature: { fontSize: fontSizes.body, lineHeight: 20 },
+    metricValueFeature: { fontSize: fontSizes.body, lineHeight: 21 },
     metricLabel: {
       marginTop: space.xxs,
       color: C.faint,

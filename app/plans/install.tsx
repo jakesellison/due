@@ -705,7 +705,7 @@ const makeStyles = (C: Tokens) =>
     ctaBtnText: { fontSize: fontSizes.body, fontWeight: '800', color: C.ink },
     ctaDisabled: { opacity: 0.4 },
     useCta: { marginTop: space.md },
-    importTitle: { color: C.ink, fontSize: 20, fontWeight: '800', letterSpacing: -0.3 },
+    importTitle: { color: C.ink, fontSize: fontSizes.cardTitle, fontWeight: '800', letterSpacing: -0.3 },
     sectionIntro: { marginTop: space.xs, maxWidth: 340, color: C.mute, fontSize: fontSizes.label, lineHeight: 18, fontWeight: '600' },
     openFileBtn: { marginTop: space.lg },
     openFileContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: space.s },
@@ -741,7 +741,7 @@ const makeStyles = (C: Tokens) =>
     noticeEyebrow: { fontSize: fontSizes.labelSm, fontWeight: '800', color: C.pink, letterSpacing: 0.6 },
     noticeStats: { flexDirection: 'row', gap: space.xl, marginTop: space.m },
     noticeStat: { alignItems: 'flex-start' },
-    noticeStatVal: { fontSize: 22, fontWeight: '800', color: C.ink, fontVariant: ['tabular-nums'] },
+    noticeStatVal: { fontSize: fontSizes.sheetTitle, fontWeight: '800', color: C.ink, fontVariant: ['tabular-nums'] },
     noticeStatLab: { marginTop: space.xxs, fontSize: fontSizes.micro, fontWeight: '800', color: C.mute, letterSpacing: 0.5 },
 
     // Review.

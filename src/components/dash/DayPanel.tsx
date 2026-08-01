@@ -729,7 +729,7 @@ const makeStyles = (C: Tokens) =>
       fontSize: fontSizes.sectionTitle,
       letterSpacing: -0.2,
     },
-    restMeta: { ...eyebrowText(C, 'labelSm'), marginTop: 3 },
+    restMeta: { ...eyebrowText(C, 'labelSm'), marginTop: space.nudge },
     outcome: { paddingHorizontal: space.lg },
     outcomeTop: { flexDirection: 'row', alignItems: 'center', gap: space.md },
     outcomeTopAccessible: { flexDirection: 'column', alignItems: 'stretch' },
@@ -737,7 +737,7 @@ const makeStyles = (C: Tokens) =>
     outcomeTitle: { color: C.ink, fontFamily: display, fontSize: fontSizes.sectionTitle, letterSpacing: -0.2 },
     // Type and prescription answer different questions. Stacking them keeps a
     // mixed identity such as "Long + Quality" intact beside the result column.
-    outcomeMeta: { alignItems: 'flex-start', gap: space.xxs, marginTop: 3 },
+    outcomeMeta: { alignItems: 'flex-start', gap: space.xxs, marginTop: space.nudge },
     outcomeMetaAccessible: { flexDirection: 'column', alignItems: 'flex-start' },
     // The colour is the day's own type accent (or the per-word tints of a mixed
     // "Long + Quality" identity), applied at the call site.
@@ -748,15 +748,15 @@ const makeStyles = (C: Tokens) =>
     outcomeActual: {
       color: C.ink,
       fontFamily: display,
-      fontSize: 22,
+      fontSize: fontSizes.sheetTitle,
       letterSpacing: -0.4,
       fontVariant: ['tabular-nums'],
     },
     outcomeActualMissed: { color: C.mute },
     outcomeActualUnit: { color: C.mute, fontFamily: undefined, fontSize: fontSizes.metadata, fontWeight: '700' },
-    outcomeState: { ...eyebrowText(C, 'micro'), marginTop: 3 },
+    outcomeState: { ...eyebrowText(C, 'micro'), marginTop: space.nudge },
     outcomeStateMissed: { color: C.warningText },
-    unplannedContext: { ...eyebrowText(C, 'micro'), marginTop: 3 },
+    unplannedContext: { ...eyebrowText(C, 'micro'), marginTop: space.nudge },
     outcomeRule: { marginTop: space.md },
     outcomeDelta: { flexDirection: 'row', alignItems: 'center', gap: space.s, paddingTop: space.sm },
     outcomeDeltaAccessible: { alignItems: 'flex-start' },
@@ -801,7 +801,7 @@ const makeStyles = (C: Tokens) =>
     remainingDivider: hairlineTop(C),
     remainingCopy: { flex: 1, minWidth: 0, paddingRight: space.sm },
     remainingTitle: { color: C.ink, fontSize: fontSizes.labelLg, fontWeight: '700' },
-    remainingMeta: { ...eyebrowText(C, 'micro'), marginTop: 3 },
+    remainingMeta: { ...eyebrowText(C, 'micro'), marginTop: space.nudge },
     remainingMetaMissed: { color: C.warningText },
     remainingRight: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
     remainingMiles: { ...statValueText(C, 'labelLg', 'system'), fontWeight: '800' },

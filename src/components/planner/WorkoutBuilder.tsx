@@ -1309,7 +1309,7 @@ const makeStyles = (C: Tokens) =>
 
     lbl: { ...eyebrowText(C, 'micro'), marginTop: space.lg, marginBottom: space.sm, marginHorizontal: space.xxs },
     opt: { color: C.mute, textTransform: 'none', letterSpacing: 0, fontWeight: '600' },
-    input: { backgroundColor: C.recess, borderWidth: 1, borderColor: C.line, borderRadius: 11, paddingHorizontal: space.l, paddingVertical: space.md, color: C.ink, fontSize: fontSizes.labelLg, fontWeight: '600' },
+    input: { backgroundColor: C.recess, borderWidth: 1, borderColor: C.line, borderRadius: radius.md, paddingHorizontal: space.l, paddingVertical: space.md, color: C.ink, fontSize: fontSizes.labelLg, fontWeight: '600' },
 
     // The preview below owns the prescription details; this rail only chooses
     // a starting point. Removing repeated pace/recovery copy keeps it compact.
@@ -1325,7 +1325,7 @@ const makeStyles = (C: Tokens) =>
 
     previewHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', marginTop: space.lg, marginBottom: space.xs },
     previewTitle: { color: C.ink, fontSize: fontSizes.body, fontWeight: '800', letterSpacing: -0.15 },
-    total: { color: C.ink, fontFamily: display, fontSize: 19, letterSpacing: -0.4 },
+    total: { color: C.ink, fontFamily: display, fontSize: fontSizes.cardTitle, letterSpacing: -0.4 },
     totalU: { color: C.mute, fontSize: fontSizes.labelSm, fontWeight: '700' },
     prescription: { ...hairlineTop(C), ...hairlineBottom(C) },
     prescriptionRow: { minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.s, paddingVertical: space.sm },
@@ -1339,8 +1339,8 @@ const makeStyles = (C: Tokens) =>
     advancedSummary: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: space.lg, paddingTop: space.sm, paddingBottom: space.xl },
     advancedSummaryCopy: { flex: 1, minWidth: 0 },
     advancedEyebrow: { ...eyebrowText(C, 'micro'), marginBottom: space.s },
-    advancedHeadline: { color: C.ink, fontFamily: display, fontSize: 22, lineHeight: 27, letterSpacing: -0.55 },
-    advancedTotal: { fontSize: 22, paddingBottom: 1 },
+    advancedHeadline: { color: C.ink, fontFamily: display, fontSize: fontSizes.sheetTitle, lineHeight: 27, letterSpacing: -0.55 },
+    advancedTotal: { fontSize: fontSizes.sheetTitle, paddingBottom: 1 },
 
     // The overview stays on open ground like the Week screen. Structure is
     // carried by a single row group and confident icons, not a diagram rail.
@@ -1367,11 +1367,11 @@ const makeStyles = (C: Tokens) =>
     addChoiceDivider: { marginLeft: 44 },
 
     intervalSummary: { paddingTop: space.sm, paddingBottom: space.xl },
-    intervalHeadline: { color: C.ink, fontFamily: display, fontSize: 24, lineHeight: 29, letterSpacing: -0.6 },
+    intervalHeadline: { color: C.ink, fontFamily: display, fontSize: fontSizes.numeralMd, lineHeight: 29, letterSpacing: -0.6 },
     intervalMeta: { color: C.mute, fontSize: fontSizes.label, lineHeight: 18, fontWeight: '600', marginTop: space.s },
     sectionLabel: { ...eyebrowText(C, 'micro'), marginTop: space.l, marginBottom: space.sm, marginHorizontal: space.xs },
     roundsRow: { minHeight: 68, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: space.sm, paddingRight: 0, ...hairlineTop(C), ...hairlineBottom(C) },
-    roundsValue: { color: C.ink, fontFamily: display, fontSize: 23, letterSpacing: -0.4 },
+    roundsValue: { color: C.ink, fontFamily: display, fontSize: fontSizes.numeralMd, letterSpacing: -0.4 },
     roundsMeta: { color: C.mute, fontSize: fontSizes.labelSm, fontWeight: '600', marginTop: space.xxs },
     roundsControl: { flexDirection: 'row', alignItems: 'center', backgroundColor: C.fill, borderRadius: radius.md, overflow: 'hidden' },
     roundsTick: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
@@ -1391,7 +1391,7 @@ const makeStyles = (C: Tokens) =>
     bandTo: { color: C.faint, fontSize: fontSizes.body, fontWeight: '800', marginRight: space.xxs },
     bandBig: { ...statValueText(C, 'body', 'system'), fontWeight: '800', minWidth: 46, textAlign: 'center' },
 
-    toggle: { flexDirection: 'row', backgroundColor: C.recess, borderWidth: 1, borderColor: C.line, borderRadius: 11, padding: 3, marginBottom: space.m },
+    toggle: { flexDirection: 'row', backgroundColor: C.recess, borderWidth: 1, borderColor: C.line, borderRadius: radius.md, padding: space.nudge, marginBottom: space.m },
     toggleb: { flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center', borderRadius: radius.sm },
     toggleOn: { backgroundColor: C.card },
     toggleTxt: { color: C.mute, fontSize: fontSizes.metadata, fontWeight: '800' },
@@ -1408,10 +1408,10 @@ const makeStyles = (C: Tokens) =>
     unitText: { ...statValueText(C, 'metadata', 'system'), color: C.mute, fontWeight: '800' },
     unitTextOn: { color: C.ink },
     bigStep: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: C.recess, borderWidth: 1, borderColor: C.line, borderRadius: radius.md, padding: space.sm },
-    bigTick: { width: 44, height: 44, borderRadius: 9, backgroundColor: C.card, alignItems: 'center', justifyContent: 'center' },
-    bigVal: { color: C.ink, fontSize: 26, fontFamily: display, letterSpacing: -0.5 },
+    bigTick: { width: 44, height: 44, borderRadius: radius.sm, backgroundColor: C.card, alignItems: 'center', justifyContent: 'center' },
+    bigVal: { color: C.ink, fontSize: fontSizes.numeralMd, fontFamily: display, letterSpacing: -0.5 },
     bigUnit: { color: C.mute, fontSize: fontSizes.label, fontWeight: '700' },
-    amountInput: { width: 96, height: 58, paddingVertical: space.xs, paddingHorizontal: space.xs, color: C.ink, fontSize: 26, fontFamily: display, letterSpacing: -0.5, textAlign: 'center', fontVariant: ['tabular-nums'] },
+    amountInput: { width: 96, height: 58, paddingVertical: space.xs, paddingHorizontal: space.xs, color: C.ink, fontSize: fontSizes.numeralMd, fontFamily: display, letterSpacing: -0.5, textAlign: 'center', fontVariant: ['tabular-nums'] },
     remainderRow: { minHeight: space.xxl + space.xxs, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: space.xs },
     cooldownDetailSlot: { minHeight: space.xxl + space.xxs },
     remainderLabel: { color: C.mute, fontSize: fontSizes.labelSm, fontWeight: '700' },

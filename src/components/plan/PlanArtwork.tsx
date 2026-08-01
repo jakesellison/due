@@ -217,7 +217,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   distanceValue: {
     color: C.brandText,
     fontFamily: display,
-    fontSize: 40,
+    fontSize: fontSizes.numeralXl,
     lineHeight: 44,
     letterSpacing: -1.1,
   },
@@ -234,7 +234,7 @@ const makeStyles = (C: Tokens) => StyleSheet.create({
   formatMark: {
     color: C.brandText,
     fontFamily: data,
-    fontSize: 34,
+    fontSize: fontSizes.numeralLg,
     lineHeight: 44,
     letterSpacing: -0.6,
   },

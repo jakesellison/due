@@ -87,10 +87,13 @@ export const THEMES: Record<ThemeName, Tokens> = {
  * single-letter steps are the half-rung BELOW their pair (s=6 under sm=8,
  * m=10 under md=12, l=14 under lg=16) for deliberate tightening. Prefer a token
  * over a raw number for any layout gap/padding/margin so the rhythm stays
- * intentional; sub-grid nudges (1–3px optical tweaks) may stay literal.
+ * intentional; sub-grid nudges of 1–2px may stay literal (3 is `nudge`).
  */
 export const space = {
   xxs: 2,
+  /** The optical micro-nudge between xxs and xs — the audit found 12+
+   *  hand-written 3s doing exactly this job. */
+  nudge: 3,
   xs: 4,
   s: 6,
   sm: 8,
@@ -199,8 +202,20 @@ export const fontSizes = {
   /** Running text and standard control labels. */
   body: 15,
   sectionTitle: 18,
+  /** Titles between sectionTitle and sheetTitle — card/screen-section
+   *  headlines, empty-state titles, route names. The 2026-08-01 audit found
+   *  ~10 screens improvising 19/20/21 for this register. */
+  cardTitle: 20,
   sheetTitle: 22,
   pageTitle: 29,
+  /** The DISPLAY NUMERAL register — stat values, gauges, hero figures — which
+   *  the document-shaped tiers above never named. `numeralSm` matching
+   *  `cardTitle` is deliberate: different intent, same size. Hero one-offs
+   *  above `numeralXl` stay bespoke. */
+  numeralSm: 20,
+  numeralMd: 24,
+  numeralLg: 34,
+  numeralXl: 40,
 } as const;
 
 /** Reused type roles. Page and sheet titles intentionally remain different

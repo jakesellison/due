@@ -563,7 +563,7 @@ const makeStyles = (C: Tokens) =>
     todayPill: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 3,
+      gap: space.nudge,
       backgroundColor: C.slate,
       borderRadius: radius.pill,
       height: 32,
@@ -580,7 +580,7 @@ const makeStyles = (C: Tokens) =>
     },
 
     // Boot / empty states
-    emptyTitle: { fontSize: 20, fontWeight: '700', color: C.ink, marginBottom: space.sm },
+    emptyTitle: { fontSize: fontSizes.cardTitle, fontWeight: '700', color: C.ink, marginBottom: space.sm },
     errorBody: { fontSize: fontSizes.body, color: C.mute, textAlign: 'center' },
     emptyBtn: {
       marginTop: space.lg,

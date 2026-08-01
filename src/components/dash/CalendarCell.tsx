@@ -157,7 +157,7 @@ const makeStyles = (C: Tokens) =>
   StyleSheet.create({
     cell: {
       flex: 1,
-      borderRadius: 11,
+      borderRadius: radius.md,
       backgroundColor: 'transparent',
       borderWidth: 1.5,
       borderColor: 'transparent',
@@ -168,7 +168,7 @@ const makeStyles = (C: Tokens) =>
     cellSelected: { backgroundColor: C.panel },
     // The selected tab needs breathing room at its bottom seam. Its workout
     // type is already expressed in the panel, so no mark is repeated here.
-    cellSelectedTab: { paddingBottom: 3 },
+    cellSelectedTab: { paddingBottom: space.nudge },
     cellOut: { opacity: 0.32 },
     cellHollow: { borderColor: C.line, borderStyle: 'dashed' },
     pressed: { opacity: 0.55 },

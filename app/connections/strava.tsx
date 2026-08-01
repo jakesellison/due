@@ -665,7 +665,7 @@ const makeStyles = (C: Tokens) =>
     rowBody: { flex: 1, minWidth: 0 },
     rowTitle: {
       fontSize: fontSizes.body,
-      lineHeight: 20,
+      lineHeight: 21,
       fontWeight: '700',
       color: C.ink,
     },
@@ -714,7 +714,7 @@ const makeStyles = (C: Tokens) =>
     },
     preferenceTitle: {
       fontSize: fontSizes.body,
-      lineHeight: 20,
+      lineHeight: 21,
       fontWeight: '700',
       color: C.ink,
       flexShrink: 1,
@@ -747,7 +747,7 @@ const makeStyles = (C: Tokens) =>
     },
     disconnectText: {
       fontSize: fontSizes.body,
-      lineHeight: 20,
+      lineHeight: 21,
       fontWeight: '700',
       color: C.dangerText,
     },
