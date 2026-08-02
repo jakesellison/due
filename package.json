@@ -6,6 +6,10 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "node scripts/claim-port.mjs 8081 && node scripts/secrets.mjs -- npx expo start --port 8081",
+    "secrets": "node scripts/secrets.mjs",
+    "ios": "node scripts/secrets.mjs -- npx expo run:ios",
+    "ios:release": "node scripts/secrets.mjs -- npx expo run:ios --configuration Release",
+    "eas": "node scripts/secrets.mjs -- npx eas-cli",
     "typecheck": "tsc --noEmit",
     "check": "node checks/layers.mjs && node checks/orphans.mjs && node checks/facts.mjs && node checks/apiContracts.mjs && tsc --noEmit",
     "sweep": "node checks/sweep.mjs",

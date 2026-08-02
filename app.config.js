@@ -37,8 +37,8 @@ module.exports = ({ config }) => ({
   //
   // The podspec reads ENV['RNMAPBOX_MAPS_DOWNLOAD_TOKEN'] directly, so the
   // token reaches CocoaPods without ever entering the JS config. Local builds
-  // get it from the npm scripts' Doppler mapping; EAS builds need it as an EAS
-  // secret (or an `env` entry in eas.json).
+  // get it from scripts/secrets.mjs (the manifest injects it under this exact
+  // name); EAS builds need it as an EAS secret (or an `env` entry in eas.json).
   plugins: [
     ...(config.plugins ?? []),
     '@rnmapbox/maps',

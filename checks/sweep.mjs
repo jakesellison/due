@@ -21,7 +21,7 @@ const FAIL = CI ? 1 : 2;
 
 const ROOT_ALLOWLIST = new Set([
   '.claude', '.expo', '.git', '.github', '.gitignore', 'CLAUDE.md', 'DESIGN.md', 'Dockerfile',
-  'api', 'app.config.js', 'cloudbuild.yaml', 'dist', 'jest.setup.app.js', 'plugins', 'scripts', 'secrets.manifest.json',
+  'api', 'app.config.js', 'cloudbuild.yaml', 'dist', 'eas.json', 'jest.setup.app.js', 'plugins', 'scripts', 'secrets.manifest.json',
   'MISSING.md', 'README.md', 'app', 'app.json', 'assets', 'babel.config.js',
   'checks', 'coverage', 'docs', 'jest.config.js', 'metro.config.js', 'node_modules', 'package-lock.json',
   'package.json', 'src', 'supabase', 'tsconfig.json', 'expo-env.d.ts',
